@@ -27,28 +27,55 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         HorizontalMovement();
+
+        grounded = rigidbody.Raycast(Vector2.down);
+        
+        if(grounded){
+            GroundedMovement();
+        }
+
+        AppplyGravity();
     }
 
     private void FixedUpdate()
     {
         Vector2 position = rigidbody.position;
-        position += velocity * Time.fixedDeltaTime; // Mario'nun fiziksel hareketi için
+        position += velocity * Time.fixedDeltaTime; // Mario'nun fiziksel hareketi iï¿½in
 
         Vector2 leftEdge = camera.ScreenToWorldPoint(Vector2.zero);
-        Vector2 rightEdge = camera.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height)); // Mario'nun hareketini sýnýrlamak için
-        position.x = Mathf.Clamp(position.x, leftEdge.x, rightEdge.x);
+        Vector2 rightEdge = camera.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height)); // Mario'nun hareketini sï¿½nï¿½rlamak iï¿½in
+        //position.x = Mathf.Clamp(position.x, leftEdge.x + 0.5f, rightEdge.x - 0.5f);
+        Vector2 tempPos = position;
+        position.x = Mathf.Clamp(position.x, leftEdge.x + 0.5f, rightEdge.x - 0.5f);
+        if (position != tempPos) { velocity.x = 0f; }
 
         rigidbody.MovePosition(position);
     }
 
-    private void HorizontalMovement() // x ekseninde hareket için
+    private void AppplyGravity()
     {
-        inputAxis = Input.GetAxis("Horizontal");
-        velocity.x = inputAxis * moveSpeed;
+         // check if falling
+        bool falling = velocity.y < 0f || !Input.GetButton("Jump");
+        float multiplier = falling ? 2f : 1f;
+        
+       // apply gravity and terminal velocity
+        velocity.y += gravity * multiplier * Time.deltaTime;
+        velocity.y = Mathf.Max(velocity.y, gravity / 2f);;
     }
 
-    public void OnMove(InputAction.CallbackContext context)
+    private void GroundedMovement()
     {
-        inputAxis = context.ReadValue<float>();
+        velocity.y = Mathf.Max(velocity.y, 0f);
+        jumping = velocity.y > 0f;
+        if (Input.GetButtonDown("Jump")){
+            velocity.y = jumpForce;
+            jumping = true;
+        }
+    }
+    private void HorizontalMovement()
+    {
+        // accelerate / decelerate
+        inputAxis = Input.GetAxis("Horizontal");
+        velocity.x = Mathf.MoveTowards(velocity.x, inputAxis * moveSpeed, moveSpeed * Time.deltaTime);
     }
 }

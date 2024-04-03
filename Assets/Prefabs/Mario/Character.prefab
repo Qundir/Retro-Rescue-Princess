@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6480206160572144793}
   - component: {fileID: 1438793193930116801}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Mario_Big_Idle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1385883942505607418}
   - component: {fileID: 6567352633660901585}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Mario_Small_Idle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 5444064975374069196}
   - component: {fileID: 7830220390717164141}
   - component: {fileID: 1791170897300911409}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Character
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -279,3 +279,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 8
+  maxJumpHeight: 5
+  maxJumpTime: 1
