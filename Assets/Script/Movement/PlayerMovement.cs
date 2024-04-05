@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
     private new Rigidbody2D rigidbody;
@@ -13,10 +14,10 @@ public class PlayerMovement : MonoBehaviour
     public float maxJumpTime = 1f;
 
     public float jumpForce => (2f * maxJumpHeight) / (maxJumpTime / 2f);
-    public float gravity => (-2f * maxJumpHeight) / Mathf.Pow(maxJumpTime / 2f, 2);
+    public float gravity => (-2f * maxJumpHeight) / Mathf.Pow((maxJumpTime / 2f ),2);
 
-    public bool grounded { get; private set; }
-    public bool jumping { get; private set; }
+    public bool grounded{get; private set; }
+    public bool jumping{get; private set; }
 
     private void Awake()
     {
@@ -26,51 +27,48 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        
         HorizontalMovement();
 
         grounded = rigidbody.Raycast(Vector2.down);
-        
+
         if(grounded){
             GroundedMovement();
         }
-
         AppplyGravity();
     }
 
     private void FixedUpdate()
     {
         Vector2 position = rigidbody.position;
-        position += velocity * Time.fixedDeltaTime; // Mario'nun fiziksel hareketi i�in
+        position += velocity * Time.fixedDeltaTime;
 
         Vector2 leftEdge = camera.ScreenToWorldPoint(Vector2.zero);
-        Vector2 rightEdge = camera.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height)); // Mario'nun hareketini s�n�rlamak i�in
-        //position.x = Mathf.Clamp(position.x, leftEdge.x + 0.5f, rightEdge.x - 0.5f);
-        Vector2 tempPos = position;
-        position.x = Mathf.Clamp(position.x, leftEdge.x + 0.5f, rightEdge.x - 0.5f);
-        if (position != tempPos) { velocity.x = 0f; }
+        Vector2 rightEdge = camera.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
+        position.x = Mathf.Clamp (position.x, leftEdge.x + 0.5f, rightEdge.x - 0.5f);
 
         rigidbody.MovePosition(position);
     }
 
     private void AppplyGravity()
-    {
-         // check if falling
+     {
         bool falling = velocity.y < 0f || !Input.GetButton("Jump");
         float multiplier = falling ? 2f : 1f;
-        
-       // apply gravity and terminal velocity
         velocity.y += gravity * multiplier * Time.deltaTime;
-        velocity.y = Mathf.Max(velocity.y, gravity / 2f);;
-    }
+        velocity.y = Mathf.Max(velocity.y, gravity / 2f);
+     }
 
     private void GroundedMovement()
     {
         velocity.y = Mathf.Max(velocity.y, 0f);
         jumping = velocity.y > 0f;
-        if (Input.GetButtonDown("Jump")){
+
+        if (Input.GetButtonDown("Jump"))
+        {
             velocity.y = jumpForce;
             jumping = true;
         }
+        
     }
     private void HorizontalMovement()
     {

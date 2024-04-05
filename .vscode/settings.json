@@ -56,5 +56,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Retro Rescue Princess.sln"
+    "dotnet.defaultSolution": "Retro Rescue Princess.sln",
+    "dotnet.preferCSharpExtension": true
 }
