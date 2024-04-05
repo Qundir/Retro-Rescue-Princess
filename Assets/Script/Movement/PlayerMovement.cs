@@ -76,4 +76,13 @@ public class PlayerMovement : MonoBehaviour
         inputAxis = Input.GetAxis("Horizontal");
         velocity.x = Mathf.MoveTowards(velocity.x, inputAxis * moveSpeed, moveSpeed * Time.deltaTime);
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.layer != LayerMask.NameToLayer("PowerUp"))
+        {
+            if(transform.DotTest(collision.transform, Vector2.up)){
+                velocity.y = 0f;
+            }
+        }
+    }
 }
