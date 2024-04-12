@@ -14,11 +14,25 @@ public class Player : MonoBehaviour
     {
         deathAnimation = GetComponent<DeathAnimation>();
     }
-    public void hit()
+    public void Hit()
     {
         if(big){
-            
+            Shrink();
+        }else{
+            Death();
         }
 
+    }
+
+    private void Shrink()
+    {
+        //TODO
+    }
+    private void Death(){
+        smallRenderer.enabled = false;
+        bigRenderer.enabled = false;
+        deathAnimation.enabled = true;
+        //make revive etc here
+        GameManager.Instance.ResetLevel(3f);
     }
 }
