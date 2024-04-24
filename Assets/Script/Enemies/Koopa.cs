@@ -56,6 +56,7 @@ public class Koopa : MonoBehaviour
         GetComponent<EntityMovement>().enabled = false;
         GetComponent<AnimatedSprite>().enabled = false;
         GetComponent<SpriteRenderer>().sprite = shellSprite;
+        GameManager.Instance.AddScore(400);
     }
     private void PushShell(Vector2 direction)
     {
@@ -72,6 +73,7 @@ public class Koopa : MonoBehaviour
         GetComponent<AnimatedSprite>().enabled = false;
         GetComponent<DeathAnimation>().enabled = true;
         Destroy(gameObject, 3f);
+        GameManager.Instance.AddScore(600);
     }
 
     private void DestroyKoopa()

@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
         smallRenderer.enabled = false;
         bigRenderer.enabled = true;
         activeRenderer = bigRenderer;
-
+        GameManager.Instance.AddScore(1000);
         capsuleCollider.size = new Vector2 (1f, 2f);
         capsuleCollider.offset = new Vector2 (0f, 0.5f);
         StartCoroutine(ScaleAnimation());
@@ -94,6 +94,8 @@ public class Player : MonoBehaviour
 
     private IEnumerator StarpowerAnimation(float duration)
     {
+        GameManager.Instance.AddScore(2000);
+
         starpower = true;
 
         float elapsed = 0f;

@@ -5,11 +5,12 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance {get; private set;}
-
     public int world{ get; private set;}
     public int stage {get; private set;}
     public int lives {get; private set;}
     public int coins {get; private set;}
+    public int score {get; private set;}
+
     private void Awake()
     {
         if (Instance != null)
@@ -29,15 +30,15 @@ public class GameManager : MonoBehaviour
     }
 
     private void Start(){
-
         Application.targetFrameRate = 60;
-        NewGame();    
+        //NewGame();    
     }
 
-    private void NewGame()
+    public void NewGame()
     {
         lives = 3;
         coins = 0;
+        score = 0;
         LoadLevel(1, 1);
     }
     public void LoadLevel(int world, int stage){
@@ -79,6 +80,7 @@ public class GameManager : MonoBehaviour
 
     public void AddCoin()
     {
+        AddScore(200);
         coins++;
         if(coins == 100)
         {
@@ -90,5 +92,17 @@ public class GameManager : MonoBehaviour
     public void AddLife(){
         lives++;
     }
+
+     public void AddScore(int pointsToAdd)
+    {
+        score += pointsToAdd;
+    }
+
+    public void ChangeTimeScale(float newTimeScale)
+    {
+        Time.timeScale = newTimeScale;
+
+        // delete it if you dont use it
+    }  
 
 }

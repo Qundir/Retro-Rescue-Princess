@@ -35,6 +35,7 @@ public class Goomba : MonoBehaviour
         GetComponent<EntityMovement>().enabled = false;
         GetComponent<AnimatedSprite>().enabled = false;
         GetComponent<SpriteRenderer>().sprite = flatSprite;
+        GameManager.Instance.AddScore(200);        
         Destroy(gameObject, 0.5f);
     }
     private void Hit()
@@ -42,5 +43,6 @@ public class Goomba : MonoBehaviour
         GetComponent<AnimatedSprite>().enabled = false;
         GetComponent<DeathAnimation>().enabled = true;
         Destroy(gameObject, 3f);
+        GameManager.Instance.AddScore(400);
     }
 }
