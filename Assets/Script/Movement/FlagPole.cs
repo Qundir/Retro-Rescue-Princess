@@ -43,6 +43,4 @@ public class FlagPole : MonoBehaviour
 
         subject.position = position;
     }
-
-
 }

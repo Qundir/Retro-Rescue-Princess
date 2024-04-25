@@ -52,7 +52,7 @@ public class UIPanel : MonoBehaviour
 
     public void StartGame()
     {
-        GameManager.Instance.ChangeTimeScale(1f);
+        //GameManager.Instance.ChangeTimeScale(1f);
 
     }
 }

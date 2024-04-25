@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
 
     private void Start(){
         Application.targetFrameRate = 60;
-        //NewGame();    
+        NewGame();    
     }
 
     public void NewGame()
@@ -39,7 +39,6 @@ public class GameManager : MonoBehaviour
         lives = 3;
         coins = 0;
         score = 0;
-        LoadLevel(1, 1);
     }
     public void LoadLevel(int world, int stage){
         this.world = world;
@@ -97,12 +96,4 @@ public class GameManager : MonoBehaviour
     {
         score += pointsToAdd;
     }
-
-    public void ChangeTimeScale(float newTimeScale)
-    {
-        Time.timeScale = newTimeScale;
-
-        // delete it if you dont use it
-    }  
-
 }
