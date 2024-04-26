@@ -6,9 +6,8 @@ using UnityEngine.UI;
 
 public class UIPanel : MonoBehaviour
 {
-    public Text coinsText, livesText,stageText,timeText,scoreText;// can add more with , 
+    public Text coinsText, livesText,stageText,timeText,scoreText;// reference to scene text 
     private float remainingTime = 180f;
-    public GameObject startPanel;
     public void FixedUpdate() // use fixed update for uı be updated
     {
         UpdateCoinText();
@@ -48,11 +47,5 @@ public class UIPanel : MonoBehaviour
     private void UpdateScoreText()
     {
         scoreText.text = GameManager.Instance.score.ToString("000000");
-    }
-
-    public void StartGame()
-    {
-        //GameManager.Instance.ChangeTimeScale(1f);
-
     }
 }

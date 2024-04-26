@@ -74,7 +74,8 @@ public class GameManager : MonoBehaviour
     private void GameOver()
     {
         //change it when you done with the game
-        Invoke(nameof(NewGame), 3f);
+        LoadLevel(1,0);
+        NewGame();
     }
 
     public void AddCoin()
