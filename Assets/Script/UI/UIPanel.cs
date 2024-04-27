@@ -18,20 +18,20 @@ public class UIPanel : MonoBehaviour
     }
     private void UpdateCoinText()
     {
-        coinsText.text = "COINS : " + GameManager.Instance.coins.ToString();
+        coinsText.text = "COINS : " + GameManager.Instance.coins.ToString();// update text on scene
     }
     private void UpdateLivesText()
     {
-        livesText.text = "LIVES : " + GameManager.Instance.lives.ToString();
+        livesText.text = "LIVES : " + GameManager.Instance.lives.ToString();// update text on scene
     }
     private void UpdateStageText()
     {
-        stageText.text = GameManager.Instance.world.ToString() + " - "+  GameManager.Instance.stage.ToString();
+        stageText.text = GameManager.Instance.world.ToString() + " - "+  GameManager.Instance.stage.ToString(); // update text on scene
     }
     private void UpdateTimeText()
     {
         // update remaining time
-        remainingTime -= Time.deltaTime;
+        remainingTime -= Time.deltaTime;// update text on scene
 
         // update remaining time on text object
         timeText.text = "TIME : " + Mathf.CeilToInt(remainingTime).ToString();
