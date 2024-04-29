@@ -7,7 +7,7 @@ public class SideScrolling : MonoBehaviour
     private Transform player;
 
     public float height = 6f;
-    public float undergroundHeight = -11f;
+    public float undergroundHeight = -12f;
 
     private void Awake()
     {

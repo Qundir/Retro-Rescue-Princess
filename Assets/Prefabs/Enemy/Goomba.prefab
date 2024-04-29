@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 56edcd414648ccd46810c8fb8d71f38f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 37701c3c731a32b4f8a2fde0118e5b89, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -165,8 +165,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites:
-  - {fileID: 21300000, guid: 56edcd414648ccd46810c8fb8d71f38f, type: 3}
-  - {fileID: 21300000, guid: 2ecd82c9f9059ce4d90acf918c441096, type: 3}
+  - {fileID: 21300000, guid: 37701c3c731a32b4f8a2fde0118e5b89, type: 3}
+  - {fileID: 21300000, guid: 8ac1d51531d74a74a9fa55626bc79246, type: 3}
   framerate: 0.25
 --- !u!114 &4362379757716493325
 MonoBehaviour:
@@ -194,7 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44bdf24e13a9f9c459fecee248af8535, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flatSprite: {fileID: 21300000, guid: dceda839fbcc74441aef5f93f32bdc1a, type: 3}
+  flatSprite: {fileID: 21300000, guid: c0c94bc2fc45fd94fa3da134643572f2, type: 3}
 --- !u!114 &8923509888485750776
 MonoBehaviour:
   m_ObjectHideFlags: 0

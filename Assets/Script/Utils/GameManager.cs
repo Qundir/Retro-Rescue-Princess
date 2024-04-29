@@ -45,6 +45,8 @@ public class GameManager : MonoBehaviour
         this.stage = stage;
 
         SceneManager.LoadScene($"{world}-{stage}");
+
+        // Activate the scene loader panel for 3 seconds
     }
 
     public void NextLevel()
@@ -74,8 +76,15 @@ public class GameManager : MonoBehaviour
     private void GameOver()
     {
         //change it when you done with the game
-        LoadLevel(1,0);
+        GameOverLoad(1,0);
         NewGame();
+    }
+
+    public void GameOverLoad(int world, int stage){
+        this.world = world;
+        this.stage = stage;
+
+        SceneManager.LoadScene($"{world}-{stage}");
     }
 
     public void AddCoin()
