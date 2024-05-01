@@ -2,14 +2,14 @@
     "name": "PlayerInput",
     "maps": [
         {
-            "name": "PlayerInput",
-            "id": "f4e55664-368a-4f95-95c8-e0966a5d29a6",
+            "name": "Movement",
+            "id": "37eca179-abb2-4a46-a4bd-f287c7820219",
             "actions": [
                 {
                     "name": "Jump",
-                    "type": "Button",
-                    "id": "214391da-0cfe-42b8-ae40-4bf9a62855f9",
-                    "expectedControlType": "Button",
+                    "type": "PassThrough",
+                    "id": "f126a075-e74d-46ea-83fa-3cacb4dbd6d5",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -18,8 +18,8 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "01b7e38a-cef5-4d91-8f24-d53ffdfe31d5",
-                    "path": "<Gamepad>/dpad/up",
+                    "id": "642c0140-0c4a-4dda-a5d4-0ca75020053b",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

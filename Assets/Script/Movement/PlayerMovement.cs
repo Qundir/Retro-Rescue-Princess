@@ -1,16 +1,17 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
+
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
-    private new Rigidbody2D rigidbody;
-    private new Camera camera;
-    private new Collider2D collider;
+    private Rigidbody2D rb;
+    private Camera cameras;
+    private Collider2D colliders;
     private Vector2 velocity;
     private float inputAxis;
-
     public float moveSpeed = 8f;
     public float maxJumpHeight = 5f;
     public float maxJumpTime = 1f;
@@ -22,55 +23,59 @@ public class PlayerMovement : MonoBehaviour
     public bool jumping{get; private set; }
     public bool running => Mathf.Abs(velocity.x) > 0.25f || Mathf.Abs(inputAxis) > 0.25f;
     public bool sliding => (inputAxis > 0f && velocity.x < 0f) || (inputAxis < 0f && velocity.x > 0f);
+    PlayerInput playerInput;
     private void Awake()
     {
-        rigidbody = GetComponent<Rigidbody2D>();
-        camera = Camera.main;
-        collider = GetComponent<Collider2D>();
+        rb = GetComponent<Rigidbody2D>();
+        cameras = Camera.main;
+        colliders = GetComponent<Collider2D>();
+        playerInput = new PlayerInput();
     }
      private void OnEnable()
     {
-        rigidbody.isKinematic = false;
-        collider.enabled = true;
+        rb.isKinematic = false;
+        colliders.enabled = true;
         velocity = Vector2.zero;
         jumping = false;
+        playerInput.Enable();
     }
 
     private void OnDisable()
     {
-        rigidbody.isKinematic = true;
-        collider.enabled = false;
+        rb.isKinematic = true;
+        colliders.enabled = false;
         velocity = Vector2.zero;
         jumping = false;
+        playerInput.Disable();
     }
     private void Update()
     {
         
         HorizontalMovement();
-
-        grounded = rigidbody.Raycast(Vector2.down);
+        grounded = rb.Raycast(Vector2.down);
 
         if(grounded){
             GroundedMovement();
         }
-        AppplyGravity();
+        ApplyGravity();
     }
 
     private void FixedUpdate()
     {
-        Vector2 position = rigidbody.position;
+        Vector2 position = rb.position;
         position += velocity * Time.fixedDeltaTime;
         //camera
-        Vector2 leftEdge = camera.ScreenToWorldPoint(Vector2.zero);
-        Vector2 rightEdge = camera.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
-        position.x = Mathf.Clamp (position.x, leftEdge.x + 0.5f, rightEdge.x - 0.5f);
+        Vector2 leftEdge = cameras.ScreenToWorldPoint(Vector2.zero);
+        Vector2 rightEdge = cameras.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
+        position.x = Mathf.Clamp (position.x, leftEdge.x + 7f, rightEdge.x - 0.5f);
 
-        rigidbody.MovePosition(position);
+        rb.MovePosition(position);
     }
 
-    private void AppplyGravity()
+    private void ApplyGravity()
      {
-        bool falling = velocity.y < 0f || !Input.GetButton("Jump");
+        bool isSpaceKeyHeld = playerInput.Movement.Jump.ReadValue<float>() > 0.1f;
+        bool falling = velocity.y < 0f || !isSpaceKeyHeld;
         float multiplier = falling ? 2f : 1f;
         velocity.y += gravity * multiplier * Time.deltaTime;
         velocity.y = Mathf.Max(velocity.y, gravity / 2f);
@@ -78,22 +83,35 @@ public class PlayerMovement : MonoBehaviour
 
     private void GroundedMovement()
     {
+        bool isSpaceKeyHeld = playerInput.Movement.Jump.ReadValue<float>() > 0.1f;
         velocity.y = Mathf.Max(velocity.y, 0f);
         jumping = velocity.y > 0f;
 
-        if (Input.GetButtonDown("Jump"))
+        if (isSpaceKeyHeld)
         {
             velocity.y = jumpForce;
             jumping = true;
         }
         
     }
+    public void GoRight()
+    {
+        inputAxis = 1f;
+    }
+    public void GoLeft()
+    {
+        inputAxis = -1f;
+    }
+    public void StopTheMovement()
+    {
+        inputAxis = 0f;
+    }
     private void HorizontalMovement()
     {
         // accelerate / decelerate
-        inputAxis = Input.GetAxis("Horizontal");
+        //inputAxis = Input.GetAxis("Horizontal");
         velocity.x = Mathf.MoveTowards(velocity.x, inputAxis * moveSpeed, moveSpeed * Time.deltaTime);
-        if(rigidbody.Raycast(Vector2.right * velocity.x)){
+        if(rb.Raycast(Vector2.right * velocity.x)){
             velocity.x = 0f;
         }
         if(velocity.x > 0f)

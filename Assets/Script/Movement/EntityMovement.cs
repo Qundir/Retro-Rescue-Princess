@@ -3,7 +3,7 @@ using UnityEngine.InputSystem.LowLevel;
 
 public class EntityMovement : MonoBehaviour
 {
-    private new Rigidbody2D rigidbody;
+    private Rigidbody2D rb;
     public Vector2 direction = Vector2.left;
     public float speed = 2f;
     private Vector2 velocity;
@@ -11,7 +11,7 @@ public class EntityMovement : MonoBehaviour
     
     private void Awake()
     {
-        rigidbody = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         enabled = false;
     }
 
@@ -28,24 +28,24 @@ public class EntityMovement : MonoBehaviour
     }
     private void OnEnable()
     {
-        rigidbody.WakeUp();
+        rb.WakeUp();
     }
     private void OnDisable()
     {
-        rigidbody.velocity = Vector2.zero;
-        rigidbody.Sleep();
+        rb.velocity = Vector2.zero;
+        rb.Sleep();
     }
 
     private void FixedUpdate()
     {
         velocity.x = direction.x * speed;
         velocity.y = Physics2D.gravity.y * Time.fixedDeltaTime;
-        rigidbody.MovePosition(rigidbody.position + velocity * Time.fixedDeltaTime);
-        if(rigidbody.Raycast(direction))
+        rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
+        if(rb.Raycast(direction))
         {
             direction = -direction;
         }
-        if (rigidbody.Raycast(Vector2.down)){
+        if (rb.Raycast(Vector2.down)){
             velocity.y = Mathf.Max(velocity.y, 0f);
         }
     }
