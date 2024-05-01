@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public int coins {get; private set;}
     public int score {get; private set;}
 
+    private GameObject revivePanel;
+
     private void Awake()
     {
         if (Instance != null)
@@ -33,6 +35,18 @@ public class GameManager : MonoBehaviour
         Application.targetFrameRate = 60;
         NewGame();    
     }
+    public void FindRevivePanel()
+    {
+        // RevivePanel adlı GameObject'i sahnede ara
+        revivePanel = GameObject.FindWithTag("RevivePanel");
+
+        // Eğer RevivePanel bulunamazsa hata mesajı yazdır
+        if (revivePanel == null)
+        {
+            Debug.LogError("RevivePanel not found in the scene!");
+        }
+        revivePanel.SetActive(false);
+    }
 
     public void NewGame()
     {
@@ -43,10 +57,12 @@ public class GameManager : MonoBehaviour
     public void LoadLevel(int world, int stage){
         this.world = world;
         this.stage = stage;
-
+        
         SceneManager.LoadScene($"{world}-{stage}");
-
+        
         // Activate the scene loader panel for 3 seconds
+        Invoke("FindRevivePanel", 0.02f);
+        
     }
 
     public void NextLevel()
@@ -76,8 +92,15 @@ public class GameManager : MonoBehaviour
     private void GameOver()
     {
         //change it when you done with the game
-        GameOverLoad(1,0);
-        NewGame();
+        //GameOverLoad(1,0);
+        //NewGame();
+        revivePanel.SetActive(true);
+    }
+    public void AddlifeAddLevelLoader()
+    {
+        this.world = world;
+        this.stage = stage;
+        LoadLevel(world,stage);
     }
 
     public void GameOverLoad(int world, int stage){
