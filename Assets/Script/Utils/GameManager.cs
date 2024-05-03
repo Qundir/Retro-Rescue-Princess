@@ -62,7 +62,6 @@ public class GameManager : MonoBehaviour
         
         // Activate the scene loader panel for 3 seconds
         Invoke("FindRevivePanel", 0.02f);
-        
     }
 
     public void NextLevel()

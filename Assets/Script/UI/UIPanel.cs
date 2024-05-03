@@ -1,13 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UIPanel : MonoBehaviour
 {
     public Text coinsText, livesText,stageText,timeText,scoreText;// reference to scene text 
+
     private float remainingTime = 180f;
+
     public void FixedUpdate() // use fixed update for uı be updated
     {
         UpdateCoinText();
@@ -16,6 +19,7 @@ public class UIPanel : MonoBehaviour
         UpdateTimeText();
         UpdateScoreText();
     }
+
     private void UpdateCoinText()
     {
         coinsText.text = "COINS : " + GameManager.Instance.coins.ToString();// update text on scene
