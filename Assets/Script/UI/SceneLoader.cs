@@ -15,7 +15,7 @@ public class SceneLoader : MonoBehaviour
         UpdateWorldTextLoader();
         ActivateSceneLoaderPanel(3f);
     }
-
+    
     private void UpdateLivesTextLoader()
     {
         livesTextLoader.text = " :  " + GameManager.Instance.lives.ToString();
@@ -42,7 +42,6 @@ public class SceneLoader : MonoBehaviour
         panelActive = true;
 
         // save game previous time scale and pause game
-        float previousTimeScale = Time.timeScale;
         Time.timeScale = 0f;
 
         
@@ -55,7 +54,7 @@ public class SceneLoader : MonoBehaviour
         sceneLoaderPanel.SetActive(false);
 
         // resume game
-        Time.timeScale = previousTimeScale;
+        Time.timeScale = 1f;
 
         panelActive = false;
     }
