@@ -5,6 +5,7 @@ using UnityEngine;
 public class SideScrolling : MonoBehaviour
 {
     private Transform player;
+    private bool underground = false; // Yeraltında mı olduğunu belirleyen değişken
 
     public float height = 6f;
     public float undergroundHeight = -12f;
@@ -17,14 +18,24 @@ public class SideScrolling : MonoBehaviour
     private void LateUpdate()
     {
         Vector3 cameraPosition = transform.position;
-        cameraPosition.x = Mathf.Max(cameraPosition.x, player.position.x);
-        transform.position = cameraPosition;// mario sadece ileri gidilid�inde takip edilsin diye mathf max kullan�ld�
+
+        // Yeraltında değilken oyuncuyu takip et
+        if (!underground)
+        {
+            cameraPosition.x = Mathf.Max(cameraPosition.x, player.position.x);
+            cameraPosition.y = height; // Kamera yüksekliğini 6f'ye ayarla
+        }
+        else
+        {
+            // Yeraltındayken sabit konuma yerleştir
+            cameraPosition = new Vector3(100f, -26.5f, cameraPosition.z);
+        }
+
+        transform.position = cameraPosition;
     }
 
-    public void SetUnderGround(bool underground)
+    public void SetUnderGround(bool isUnderGround)
     {
-        Vector3 cameraPosition = transform.position;
-        cameraPosition.y = underground ? undergroundHeight : height;
-        transform.position = cameraPosition;
+        underground = isUnderGround;
     }
 }
