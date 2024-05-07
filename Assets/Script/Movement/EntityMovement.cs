@@ -7,7 +7,7 @@ public class EntityMovement : MonoBehaviour
     public Vector2 direction = Vector2.left;
     public float speed = 2f;
     private Vector2 velocity;
-    //daily contribituon
+
     
     private void Awake()
     {

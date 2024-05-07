@@ -26,7 +26,7 @@ public class SceneLoader : MonoBehaviour
         worldTextLoader.text = " WORLD : " + GameManager.Instance.world.ToString() + " - " + GameManager.Instance.stage.ToString();
     }
 
-    // Paneli belirli bir süre aktif hale getirir ve ardından devre dışı bırakır 
+    // Activate scene loader panel for while and deactiveted after 3sc
     private bool panelActive = false;
 
     public void ActivateSceneLoaderPanel(float duration)
