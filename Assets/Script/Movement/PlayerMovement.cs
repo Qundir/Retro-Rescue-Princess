@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 velocity;
     private float inputAxis;
     public float moveSpeed = 8f;
-    public float maxJumpHeight = 5f;
+    public float maxJumpHeight = 5.5f;
     public float maxJumpTime = 1f;
 
     public float jumpForce => (2f * maxJumpHeight) / (maxJumpTime / 2f);
@@ -94,22 +94,10 @@ public class PlayerMovement : MonoBehaviour
         }
         
     }
-    public void GoRight()
-    {
-        inputAxis = 1f;
-    }
-    public void GoLeft()
-    {
-        inputAxis = -1f;
-    }
-    public void StopTheMovement()
-    {
-        inputAxis = 0f;
-    }
     private void HorizontalMovement()
     {
         // accelerate / decelerate
-        //inputAxis = Input.GetAxis("Horizontal");
+        inputAxis = playerInput.Movement.HorizontalAndTunnel.ReadValue<Vector2>().x;
         velocity.x = Mathf.MoveTowards(velocity.x, inputAxis * moveSpeed, moveSpeed * Time.deltaTime);
         if(rb.Raycast(Vector2.right * velocity.x)){
             velocity.x = 0f;
