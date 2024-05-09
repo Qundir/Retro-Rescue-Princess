@@ -1,20 +1,30 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Pipe : MonoBehaviour
 {
-    public KeyCode enterKeyCode = KeyCode.S;//change it when swith the platform
-
     public Transform connection;
     public Vector3 enterDirection = Vector3.down;
     public Vector3 exitDirection = Vector3.zero;
+    private bool EnterTunnel = false;
+
     private void OnTriggerStay2D(Collider2D other){
         if(connection != null && other.CompareTag("Player")){
-            if(Input.GetKey(enterKeyCode)){
+            if(EnterTunnel){
                 StartCoroutine(Enter(other.transform));
+                EnterTunnel = false;
             }
         }
+    }
+    public void EnterTunnelReturnTrue()
+    {
+        EnterTunnel = true;
+    }
+    public void EnterTunnelCanceller()
+    {
+        EnterTunnel = false;
     }
 
     private IEnumerator Enter(Transform player)

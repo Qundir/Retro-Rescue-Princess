@@ -1,3 +1,4 @@
+
 using System.Collections;
 using UnityEngine;
 
@@ -5,12 +6,14 @@ public class Player : MonoBehaviour
 {
     public PlayerSpriteRenderer smallRenderer;
     public PlayerSpriteRenderer bigRenderer;
+    public PlayerSpriteRenderer fireRenderer;
     private PlayerSpriteRenderer activeRenderer;
 
 
 
     private DeathAnimation deathAnimation;
     private CapsuleCollider2D capsuleCollider;
+    public bool fire => fireRenderer.enabled;
     public bool big => bigRenderer.enabled;
     public bool small => smallRenderer.enabled;
     public bool dead => deathAnimation.enabled;
@@ -35,7 +38,14 @@ public class Player : MonoBehaviour
         
 
     }
-
+    public void GrowFire()
+    {
+        bigRenderer.enabled = false;
+        fireRenderer.enabled = true;
+        activeRenderer = fireRenderer;
+        GameManager.Instance.AddScore(1000);
+        StartCoroutine(ScaleAnimation());
+    }
     public void Grow()
     {
         smallRenderer.enabled = false;
