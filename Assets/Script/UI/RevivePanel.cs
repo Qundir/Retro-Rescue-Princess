@@ -57,8 +57,7 @@ public class RevivePanel : MonoBehaviour
     }
     public void ShowRewardedAd()
     {
-    const string rewardMsg =
-        "Rewarded ad rewarded the user. Type: {0}, amount: {1}.";
+
 
     if (_rewardedAd != null && _rewardedAd.CanShowAd())
     {

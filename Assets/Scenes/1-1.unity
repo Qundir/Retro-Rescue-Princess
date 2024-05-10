@@ -12390,6 +12390,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 314445757233172900}
+          m_TargetAssemblyTypeName: Player, Assembly-CSharp
+          m_MethodName: ShotFireBall
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   - eventID: 3
     callback:
       m_PersistentCalls:
@@ -14127,6 +14139,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mario
       objectReference: {fileID: 0}
+    - target: {fileID: 2096426109010864864, guid: 7c079f0bea467c24093e45908f6fa33a, type: 3}
+      propertyPath: fireBall
+      value: 
+      objectReference: {fileID: 2928153484549883234, guid: 0f3b4124b45266b4ca1e6770004bbdba, type: 3}
     - target: {fileID: 2642112394643560150, guid: 7c079f0bea467c24093e45908f6fa33a, type: 3}
       propertyPath: m_Direction
       value: 0
@@ -14207,6 +14223,10 @@ PrefabInstance:
       propertyPath: m_DefaultActionMap
       value: Movement
       objectReference: {fileID: 0}
+    - target: {fileID: 5284016648622730417, guid: 7c079f0bea467c24093e45908f6fa33a, type: 3}
+      propertyPath: m_Name
+      value: FirePoint
+      objectReference: {fileID: 0}
     - target: {fileID: 6841991175928260383, guid: 7c079f0bea467c24093e45908f6fa33a, type: 3}
       propertyPath: cameraBorderX
       value: 
@@ -14220,6 +14240,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c079f0bea467c24093e45908f6fa33a, type: 3}
+--- !u!114 &314445757233172900 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2096426109010864864, guid: 7c079f0bea467c24093e45908f6fa33a, type: 3}
+  m_PrefabInstance: {fileID: 314445757233172899}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d68093c191141f34ebf36d780be36df6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

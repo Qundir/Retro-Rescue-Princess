@@ -8,10 +8,13 @@ public class BlockHit : MonoBehaviour
     public int maxHits = -1;
     public Sprite emptyBlock;
     private bool animating;
+    private Player player;
     private void OnCollisionEnter2D(Collision2D collision)
     {
+
         if(!animating && maxHits!= 0 && collision.gameObject.CompareTag("Player"))
         {
+            Player player = collision.gameObject.GetComponent<Player>();
             if(collision.transform.DotTest(transform, Vector2.up))
             {
                 Hit();
@@ -20,9 +23,11 @@ public class BlockHit : MonoBehaviour
     }
     private void Hit()
     {
+        // block hit happen here so can we get player out of it or we should use oncollisionenter??
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.enabled = true;
         maxHits--;
+        
         if(maxHits == 0)
         {
             spriteRenderer.sprite = emptyBlock;

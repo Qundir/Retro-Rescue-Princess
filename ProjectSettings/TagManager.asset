@@ -6,6 +6,9 @@ TagManager:
   tags:
   - RevivePanel
   - TunnelAndFireButton
+  - Ground
+  - Koopa
+  - Goomba
   layers:
   - Default
   - TransparentFX
@@ -16,7 +19,7 @@ TagManager:
   - PowerUp
   - Enemies
   - Shell
-  - 
+  - Fireball
   - 
   - 
   - 

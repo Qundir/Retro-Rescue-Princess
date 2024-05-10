@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 808783458894155591}
   m_Layer: 7
   m_Name: Koopa
-  m_TagString: Untagged
+  m_TagString: Koopa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

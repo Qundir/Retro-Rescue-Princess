@@ -124,7 +124,7 @@ public class GameManager : MonoBehaviour
         lives++;
     }
 
-     public void AddScore(int pointsToAdd)
+    public void AddScore(int pointsToAdd)
     {
         score += pointsToAdd;
     }

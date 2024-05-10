@@ -18,6 +18,8 @@ public class Player : MonoBehaviour
     public bool small => smallRenderer.enabled;
     public bool dead => deathAnimation.enabled;
     public bool starpower {get; private set;}
+    public GameObject fireBall;
+    public Transform firePoint;
 
     private void Awake()
     {
@@ -29,7 +31,7 @@ public class Player : MonoBehaviour
     {
         if(!starpower && !dead)
         {
-            if(big){
+            if(big || fire){
                 Shrink();
             }else{
                 Death();
@@ -38,8 +40,23 @@ public class Player : MonoBehaviour
         
 
     }
+    public void ShotFireBall()
+    {
+        if(activeRenderer == fireRenderer)
+        {
+            
+            GameObject fire = Instantiate(fireBall, firePoint.position, firePoint.rotation);
+            Rigidbody2D rb = fire.GetComponent<Rigidbody2D>();
+            rb.velocity = firePoint.right * 10f;
+
+            Destroy(fire, 2f);
+
+            Debug.Log("FireBallShooted");
+        }
+    }
     public void GrowFire()
     {
+        smallRenderer.enabled = false;
         bigRenderer.enabled = false;
         fireRenderer.enabled = true;
         activeRenderer = fireRenderer;
@@ -48,18 +65,34 @@ public class Player : MonoBehaviour
     }
     public void Grow()
     {
-        smallRenderer.enabled = false;
-        bigRenderer.enabled = true;
-        activeRenderer = bigRenderer;
-        GameManager.Instance.AddScore(1000);
-        capsuleCollider.size = new Vector2 (1f, 2f);
-        capsuleCollider.offset = new Vector2 (0f, 0.5f);
-        StartCoroutine(ScaleAnimation());
+        if(activeRenderer == bigRenderer)
+        {
+            GrowFire();
+        
+        }else if(activeRenderer == fireRenderer)
+        {
+            StartCoroutine(ScaleAnimation());
+            GameManager.Instance.AddScore(1000);
+            
+        }
+        else
+        {
+            fireRenderer.enabled = false;
+            smallRenderer.enabled = false;
+            bigRenderer.enabled = true;
+            activeRenderer = bigRenderer;
+            GameManager.Instance.AddScore(1000);
+            capsuleCollider.size = new Vector2 (1f, 2f);
+            capsuleCollider.offset = new Vector2 (0f, 0.5f);
+            StartCoroutine(ScaleAnimation());
+        }
+        
     }
     private void Shrink()
     {
         smallRenderer.enabled = true;
         bigRenderer.enabled = false;
+        fireRenderer.enabled = false;
         activeRenderer = smallRenderer;
 
         capsuleCollider.size = new Vector2 (1f, 1f);
