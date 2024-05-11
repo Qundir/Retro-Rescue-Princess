@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     public int lives {get; private set;}
     public int coins {get; private set;}
     public int score {get; private set;}
+    public string activeRendererType;
+    private Player player;
 
     private GameObject revivePanel;
 
@@ -23,11 +25,34 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
-
+    private void OnLevelWasLoaded(int level)
+    {
+        ApplyActiveRenderer();
+    }
     private void OnDestroy()
     {
         if (Instance == this){
             Instance = null;
+        }
+    }
+    public void StoreRendererType(string type)
+    {
+        activeRendererType = type;
+    }
+    public void ApplyActiveRenderer()
+    {
+        // Find the Player in the new scene
+        Player player = FindObjectOfType<Player>();
+        if (player != null) {
+            player.SetRenderer(activeRendererType);
+        }
+    }
+    
+    public void FindPlayerAndSetRenderer()
+    {
+        Player player = FindObjectOfType<Player>();
+        if (player != null) {
+            player.SetRenderer(activeRendererType);
         }
     }
 
@@ -47,22 +72,33 @@ public class GameManager : MonoBehaviour
         }
         revivePanel.SetActive(false);
     }
-
     public void NewGame()
     {
         lives = 3;
         coins = 0;
         score = 0;
     }
-    public void LoadLevel(int world, int stage){
+    public void StartLoaderGame(int world, int stage)
+    {
         this.world = world;
         this.stage = stage;
         
         SceneManager.LoadScene($"{world}-{stage}");
-        
-        // Activate the scene loader panel for 3 seconds
         Invoke("FindRevivePanel", 0.02f);
+        Invoke("FindPlayerAndSetRenderer", 0.1f);
     }
+    public void LoadLevel(int world, int stage)
+    {
+        this.world = world;
+        this.stage = stage;
+        
+        SceneManager.LoadScene($"{world}-{stage}");
+
+        // Activate the scene loader panel for 3 seconds
+
+        Invoke("FindRevivePanel", 0.03f);  
+    }
+
 
     public void NextLevel()
     {

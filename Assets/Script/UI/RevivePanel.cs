@@ -4,7 +4,7 @@ using System;
 
 public class RevivePanel : MonoBehaviour
 {
-    private string _adUnitId = "ca-app-pub-3940256099942544/5224354917";
+    private string _adUnitId = "ca-app-pub-1428627333476346/3120455849";
     private RewardedAd _rewardedAd;
     public void Start()
     {

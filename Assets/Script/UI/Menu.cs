@@ -9,7 +9,7 @@ public class Menu : MonoBehaviour
     public GameObject StartPanel, SettingsPanel,CreditPanel; // settings and credit should get update 
     public void StartTheGame()
     {
-        GameManager.Instance.LoadLevel(1,1);
+        GameManager.Instance.StartLoaderGame(1,1);
     }
     public void OpenSettingsPanel()
     {

@@ -1,5 +1,7 @@
 
 using System.Collections;
+using System.Diagnostics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -7,7 +9,7 @@ public class Player : MonoBehaviour
     public PlayerSpriteRenderer smallRenderer;
     public PlayerSpriteRenderer bigRenderer;
     public PlayerSpriteRenderer fireRenderer;
-    private PlayerSpriteRenderer activeRenderer;
+    public PlayerSpriteRenderer activeRenderer;
 
 
 
@@ -20,12 +22,47 @@ public class Player : MonoBehaviour
     public bool starpower {get; private set;}
     public GameObject fireBall;
     public Transform firePoint;
-
     private void Awake()
     {
         deathAnimation = GetComponent<DeathAnimation>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
-        activeRenderer = smallRenderer;
+        GameManager.Instance.FindPlayerAndSetRenderer();
+        SetRenderer(GameManager.Instance.activeRendererType);
+        UnityEngine.Debug.Log("AwakeWork");
+    }
+   public void SetRenderer(string rendererType)
+    {
+        switch (rendererType)
+        {
+            case "Small":
+                activeRenderer = smallRenderer;
+                smallRenderer.enabled = true;
+                bigRenderer.enabled = false;
+                fireRenderer.enabled = false;
+                capsuleCollider.size = new Vector2 (1f, 1f);
+                capsuleCollider.offset = new Vector2 (0f, 0f);
+                UnityEngine.Debug.Log("Smallworked");
+                break;
+            case "Big":
+                activeRenderer = bigRenderer;
+                fireRenderer.enabled = false;
+                smallRenderer.enabled = false;
+                bigRenderer.enabled = true;
+                capsuleCollider.size = new Vector2 (1f, 2f);
+                capsuleCollider.offset = new Vector2 (0f, 0.5f);
+                UnityEngine.Debug.Log("BigWorked");
+                break;
+            case "Fire":
+                activeRenderer = fireRenderer;
+                smallRenderer.enabled = false;
+                bigRenderer.enabled = false;
+                fireRenderer.enabled = true;
+                capsuleCollider.size = new Vector2 (1f, 2f);
+                capsuleCollider.offset = new Vector2 (0f, 0.5f);
+                UnityEngine.Debug.Log("FireWorked");
+                break;
+        }
+        GameManager.Instance.StoreRendererType(rendererType);  // Store the current type in GameManager
     }
     public void Hit()
     {
@@ -48,10 +85,7 @@ public class Player : MonoBehaviour
             GameObject fire = Instantiate(fireBall, firePoint.position, firePoint.rotation);
             Rigidbody2D rb = fire.GetComponent<Rigidbody2D>();
             rb.velocity = firePoint.right * 10f;
-
             Destroy(fire, 2f);
-
-            Debug.Log("FireBallShooted");
         }
     }
     public void GrowFire()
@@ -67,12 +101,14 @@ public class Player : MonoBehaviour
     {
         if(activeRenderer == bigRenderer)
         {
+            SetRenderer("Fire");
             GrowFire();
         
         }else if(activeRenderer == fireRenderer)
         {
             StartCoroutine(ScaleAnimation());
             GameManager.Instance.AddScore(1000);
+            SetRenderer("Fire");
             
         }
         else
@@ -85,6 +121,7 @@ public class Player : MonoBehaviour
             capsuleCollider.size = new Vector2 (1f, 2f);
             capsuleCollider.offset = new Vector2 (0f, 0.5f);
             StartCoroutine(ScaleAnimation());
+            SetRenderer("Big");
         }
         
     }
@@ -156,5 +193,22 @@ public class Player : MonoBehaviour
         activeRenderer.spriteRenderer.color = Color.white;
 
         starpower = false;
+    }
+    public void LoadLevelSpriteRenderer()
+    {
+        if(activeRenderer == fireRenderer)
+        {
+            UnityEngine.Debug.Log("Fire renderer is active");
+        }else if (activeRenderer == bigRenderer)
+        {
+            UnityEngine.Debug.Log("Big renderer is active");
+
+        }else if (activeRenderer == smallRenderer)
+        {
+            UnityEngine.Debug.Log("small renderer is active");
+        }else
+        {
+            UnityEngine.Debug.Log("active renderer is not assigned");
+        }
     }
 }
