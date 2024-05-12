@@ -31850,6 +31850,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c079f0bea467c24093e45908f6fa33a, type: 3}
+--- !u!114 &1063728702 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2096426109010864864, guid: 7c079f0bea467c24093e45908f6fa33a, type: 3}
+  m_PrefabInstance: {fileID: 1063728701}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d68093c191141f34ebf36d780be36df6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1065159430
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -66604,6 +66615,18 @@ MonoBehaviour:
         - m_Target: {fileID: 1796128637}
           m_TargetAssemblyTypeName: Pipe, Assembly-CSharp
           m_MethodName: EnterTunnelReturnTrue
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1063728702}
+          m_TargetAssemblyTypeName: Player, Assembly-CSharp
+          m_MethodName: ShotFireBall
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

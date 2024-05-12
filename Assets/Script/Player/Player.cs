@@ -26,7 +26,6 @@ public class Player : MonoBehaviour
     {
         deathAnimation = GetComponent<DeathAnimation>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
-        GameManager.Instance.FindPlayerAndSetRenderer();
         SetRenderer(GameManager.Instance.activeRendererType);
         UnityEngine.Debug.Log("AwakeWork");
     }
@@ -135,6 +134,7 @@ public class Player : MonoBehaviour
         capsuleCollider.size = new Vector2 (1f, 1f);
         capsuleCollider.offset = new Vector2 (0f, 0f);
         StartCoroutine(ScaleAnimation());
+        SetRenderer("Small");
     }
     private void Death(){
         smallRenderer.enabled = false;
@@ -142,6 +142,7 @@ public class Player : MonoBehaviour
         deathAnimation.enabled = true;
         //make revive etc here
         GameManager.Instance.ResetLevel(3f);
+        SetRenderer("Small");
     }
     
     private IEnumerator ScaleAnimation()
@@ -193,22 +194,5 @@ public class Player : MonoBehaviour
         activeRenderer.spriteRenderer.color = Color.white;
 
         starpower = false;
-    }
-    public void LoadLevelSpriteRenderer()
-    {
-        if(activeRenderer == fireRenderer)
-        {
-            UnityEngine.Debug.Log("Fire renderer is active");
-        }else if (activeRenderer == bigRenderer)
-        {
-            UnityEngine.Debug.Log("Big renderer is active");
-
-        }else if (activeRenderer == smallRenderer)
-        {
-            UnityEngine.Debug.Log("small renderer is active");
-        }else
-        {
-            UnityEngine.Debug.Log("active renderer is not assigned");
-        }
     }
 }

@@ -10,6 +10,7 @@ public class DeathBarrier : MonoBehaviour
         {
             other.gameObject.SetActive(false);
             GameManager.Instance.ResetLevel(3.0f);
+            GameManager.Instance.StoreRendererType("Small");
         }else{
             Destroy(other.gameObject);
         }

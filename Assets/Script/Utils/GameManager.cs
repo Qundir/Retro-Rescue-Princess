@@ -48,13 +48,7 @@ public class GameManager : MonoBehaviour
         }
     }
     
-    public void FindPlayerAndSetRenderer()
-    {
-        Player player = FindObjectOfType<Player>();
-        if (player != null) {
-            player.SetRenderer(activeRendererType);
-        }
-    }
+  
 
     private void Start(){
         Application.targetFrameRate = 60;
@@ -80,12 +74,13 @@ public class GameManager : MonoBehaviour
     }
     public void StartLoaderGame(int world, int stage)
     {
+
+        // for the start the game on menu
         this.world = world;
         this.stage = stage;
         
         SceneManager.LoadScene($"{world}-{stage}");
         Invoke("FindRevivePanel", 0.02f);
-        Invoke("FindPlayerAndSetRenderer", 0.1f);
     }
     public void LoadLevel(int world, int stage)
     {
