@@ -10,9 +10,6 @@ public class Player : MonoBehaviour
     public PlayerSpriteRenderer bigRenderer;
     public PlayerSpriteRenderer fireRenderer;
     public PlayerSpriteRenderer activeRenderer;
-
-
-
     private DeathAnimation deathAnimation;
     private CapsuleCollider2D capsuleCollider;
     public bool fire => fireRenderer.enabled;
@@ -27,7 +24,6 @@ public class Player : MonoBehaviour
         deathAnimation = GetComponent<DeathAnimation>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
         SetRenderer(GameManager.Instance.activeRendererType);
-        UnityEngine.Debug.Log("AwakeWork");
     }
    public void SetRenderer(string rendererType)
     {
@@ -40,7 +36,6 @@ public class Player : MonoBehaviour
                 fireRenderer.enabled = false;
                 capsuleCollider.size = new Vector2 (1f, 1f);
                 capsuleCollider.offset = new Vector2 (0f, 0f);
-                UnityEngine.Debug.Log("Smallworked");
                 break;
             case "Big":
                 activeRenderer = bigRenderer;
@@ -49,7 +44,6 @@ public class Player : MonoBehaviour
                 bigRenderer.enabled = true;
                 capsuleCollider.size = new Vector2 (1f, 2f);
                 capsuleCollider.offset = new Vector2 (0f, 0.5f);
-                UnityEngine.Debug.Log("BigWorked");
                 break;
             case "Fire":
                 activeRenderer = fireRenderer;
@@ -58,7 +52,6 @@ public class Player : MonoBehaviour
                 fireRenderer.enabled = true;
                 capsuleCollider.size = new Vector2 (1f, 2f);
                 capsuleCollider.offset = new Vector2 (0f, 0.5f);
-                UnityEngine.Debug.Log("FireWorked");
                 break;
         }
         GameManager.Instance.StoreRendererType(rendererType);  // Store the current type in GameManager
@@ -73,8 +66,6 @@ public class Player : MonoBehaviour
                 Death();
             }
         }
-        
-
     }
     public void ShotFireBall()
     {
@@ -122,7 +113,6 @@ public class Player : MonoBehaviour
             StartCoroutine(ScaleAnimation());
             SetRenderer("Big");
         }
-        
     }
     private void Shrink()
     {
@@ -140,16 +130,13 @@ public class Player : MonoBehaviour
         smallRenderer.enabled = false;
         bigRenderer.enabled = false;
         deathAnimation.enabled = true;
-        //make revive etc here
         GameManager.Instance.ResetLevel(3f);
         SetRenderer("Small");
     }
-    
     private IEnumerator ScaleAnimation()
     {
         float elapsed = 0f;
         float duration = 0.5f;
-
         while(elapsed < duration)
         {
             elapsed += Time.deltaTime;
@@ -161,26 +148,19 @@ public class Player : MonoBehaviour
 
             yield return null;
         }
-
         smallRenderer.enabled = false;
         bigRenderer.enabled = false;
-
         activeRenderer.enabled = true;
     }
-    
     public void StarPower(float duration = 10f)
     {
         StartCoroutine(StarpowerAnimation(duration));
     }
-
     private IEnumerator StarpowerAnimation(float duration)
     {
         GameManager.Instance.AddScore(2000);
-
         starpower = true;
-
         float elapsed = 0f;
-    
         while (elapsed < duration )
         {
             elapsed += Time.deltaTime;
@@ -190,9 +170,7 @@ public class Player : MonoBehaviour
             }
             yield return null;
         }
-
         activeRenderer.spriteRenderer.color = Color.white;
-
         starpower = false;
     }
 }

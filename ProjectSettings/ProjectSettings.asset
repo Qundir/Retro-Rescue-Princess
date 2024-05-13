@@ -139,7 +139,7 @@ PlayerSettings:
   loadStoreDebugModeEnabled: 0
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
-  bundleVersion: 1.0.0.1
+  bundleVersion: 1.0.0.2
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -168,7 +168,7 @@ PlayerSettings:
     iPhone: 0
     tvOS: 0
   overrideDefaultApplicationIdentifier: 1
-  AndroidBundleVersionCode: 1
+  AndroidBundleVersionCode: 2
   AndroidMinSdkVersion: 22
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
@@ -258,20 +258,20 @@ PlayerSettings:
   useCustomGradlePropertiesTemplate: 1
   useCustomGradleSettingsTemplate: 0
   useCustomProguardFile: 0
-  AndroidTargetArchitectures: 1
+  AndroidTargetArchitectures: 15
   AndroidTargetDevices: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: C:/Users/Gorillaz/Desktop/Retro Rescue Princess/user.keystore
-  AndroidKeyaliasName: retro rescue
-  AndroidEnableArmv9SecurityFeatures: 0
+  AndroidKeystoreName: C:/Users/Gorillaz/Desktop/Snakerss/GoogleConsoleSnakerss/user.keystore
+  AndroidKeyaliasName: snakerss
+  AndroidEnableArmv9SecurityFeatures: 1
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
   AndroidIsGame: 1
   AndroidEnableTango: 0
   androidEnableBanner: 1
   androidUseLowAccuracyLocation: 0
-  androidUseCustomKeystore: 0
+  androidUseCustomKeystore: 1
   m_AndroidBanners:
   - width: 320
     height: 180
@@ -286,7 +286,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: fcccf5e83f3865d41a64615669d6019f, type: 3}
+      m_Icon: {fileID: 2800000, guid: 3d5f083babe711342812d15b1da4d12d, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
@@ -353,27 +353,37 @@ PlayerSettings:
       m_Height: 36
       m_Kind: 0
       m_SubKind: 
-    - m_Textures: []
+    - m_Textures:
+      - {fileID: 2800000, guid: e7a1ca45fd5a6574bac4987ddd451635, type: 3}
+      - {fileID: 2800000, guid: 586a6dc29b8618a4ab40da83f6fab59e, type: 3}
       m_Width: 432
       m_Height: 432
       m_Kind: 2
       m_SubKind: 
-    - m_Textures: []
+    - m_Textures:
+      - {fileID: 2800000, guid: 2871309f5d216b74281ce6221b0d7cc9, type: 3}
+      - {fileID: 2800000, guid: ebff12c114ab7204dba38f5303187962, type: 3}
       m_Width: 324
       m_Height: 324
       m_Kind: 2
       m_SubKind: 
-    - m_Textures: []
+    - m_Textures:
+      - {fileID: 2800000, guid: 6ca546da589e53c4cabba053526157bd, type: 3}
+      - {fileID: 2800000, guid: 734bd5c36ada03f42bfdc7699f2ffed4, type: 3}
       m_Width: 216
       m_Height: 216
       m_Kind: 2
       m_SubKind: 
-    - m_Textures: []
+    - m_Textures:
+      - {fileID: 2800000, guid: 3d5f083babe711342812d15b1da4d12d, type: 3}
+      - {fileID: 2800000, guid: d7caf2eac83e30a4e902b4de297c8b1d, type: 3}
       m_Width: 162
       m_Height: 162
       m_Kind: 2
       m_SubKind: 
-    - m_Textures: []
+    - m_Textures:
+      - {fileID: 2800000, guid: c8be93dc81e353f409d7c04ddafce267, type: 3}
+      - {fileID: 2800000, guid: 89e8cadf8ef0ddb4f8fd282b9486d34e, type: 3}
       m_Width: 108
       m_Height: 108
       m_Kind: 2
@@ -699,9 +709,11 @@ PlayerSettings:
   scriptingDefineSymbols: {}
   additionalCompilerArguments: {}
   platformArchitecture: {}
-  scriptingBackend: {}
+  scriptingBackend:
+    Android: 1
   il2cppCompilerConfiguration: {}
-  il2cppCodeGeneration: {}
+  il2cppCodeGeneration:
+    Android: 1
   managedStrippingLevel:
     EmbeddedLinux: 1
     GameCoreScarlett: 1
@@ -783,7 +795,8 @@ PlayerSettings:
   XboxOneOverrideIdentityName: 
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
-  cloudServicesEnabled: {}
+  cloudServicesEnabled:
+    Purchasing: 1
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
