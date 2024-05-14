@@ -3678,6 +3678,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 396131330}
     - target: {fileID: 6721463976582409974, guid: b412ffea96841114eb16a15637f269aa, type: 3}
+      propertyPath: exitTunnel
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6721463976582409974, guid: b412ffea96841114eb16a15637f269aa, type: 3}
       propertyPath: enterKeyCode
       value: 100
       objectReference: {fileID: 0}
@@ -14125,6 +14129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   height: 6
   undergroundHeight: -26.5
+  uppergroundHeight: 26.5
 --- !u!1001 &314445757233172899
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,73 +1,142 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem.iOS;
 using UnityEngine.Purchasing;
 using System;
 using Unity.Services.Core;
+using Unity.Services.Authentication;
+using Unity.Services.Core.Environments;
+using UnityEngine.UI;
+
+
 [Serializable]
 public class NonConsumableItem
- {
+{
     public string Name;
     public string Id;
     public string desc;
     public float price;
- }
+}
+
 public class ShopScript : MonoBehaviour, IStoreListener
 {
-    IStoreController m_StoreController;
+    private IStoreController m_StoreController;
     public NonConsumableItem ncItem;
-    bool isInitialized = false;
+    public Text messageText;
+    private static bool unityServicesInitialized  = false;
 
-    private void Start()
+    [Obsolete]
+    private async void Start()
     {
-    SetupBuilder();
+        if (!unityServicesInitialized)
+        {
+            await InitializeUnityServices();
+        }
+        else
+        {
+            SetupIAP();
+        }
     }
 
     [Obsolete]
-    void SetupBuilder()
+    private async System.Threading.Tasks.Task InitializeUnityServices()
+    {
+        try
+        {
+            var options = new InitializationOptions().SetEnvironmentName("production");
+            await UnityServices.InitializeAsync(options);
+
+            // Sign in anonymously if not already signed in
+            if (!AuthenticationService.Instance.IsSignedIn)
+            {
+                await AuthenticationService.Instance.SignInAnonymouslyAsync();
+            }
+
+            Debug.Log("Unity Services and Authentication initialized successfully.");
+            unityServicesInitialized = true;
+            SetupIAP();
+        }
+        catch (Exception e)
+        {
+            Debug.LogError("Failed to initialize Unity Services: " + e.Message);
+        }
+    }
+
+    [Obsolete]
+    void SetupIAP()
     {
         var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
-
         builder.AddProduct(ncItem.Id, ProductType.NonConsumable);
-
         UnityPurchasing.Initialize(this, builder);
     }
 
     public void NonConsumable_Btn_Pressed()
     {
-        m_StoreController.InitiatePurchase(ncItem.Id);
+        if (m_StoreController == null)
+        {
+            Debug.LogError("Store controller is not initialized.");
+            return;
+        }
+        bool AdsRemovedButtonPressed = GameManager.Instance.adsRemoved;
+        if(!AdsRemovedButtonPressed){
+            m_StoreController.InitiatePurchase(ncItem.Id);
+        }else{
+            StartCoroutine(ShowMessage("Item Already purchased!", 2f));
+        }
     }
+
     public void OnInitialized(IStoreController controller, IExtensionProvider extensions)
     {
-        print("Succes");
+        Debug.Log("IAP initialized successfully.");
         m_StoreController = controller;
+        CheckNonConsumable(ncItem.Id);
     }
 
     public void OnInitializeFailed(InitializationFailureReason error)
     {
-        print("Inıtialize failed" + error);
-    }
-
-    public void OnInitializeFailed(InitializationFailureReason error, string message)
-    {
-        print("Inıtialize failed" + error+ message);
+        Debug.LogError("IAP initialization failed: " + error);
     }
 
     public void OnPurchaseFailed(Product product, PurchaseFailureReason failureReason)
     {
-        print("Purchase failed");
+        Debug.LogError("Purchase failed: " + failureReason);
     }
 
     public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs purchaseEvent)
     {
         var product = purchaseEvent.purchasedProduct;
-        print("Purchase complete " + product.definition.id);
+        Debug.Log("Purchase complete: " + product.definition.id);
         if(product.definition.id == ncItem.Id)
         {
-            //todo remove ads
+            // Satın alma işlemi gerçekleştiğinde reklamları kaldır
+            GameManager.Instance.RemoveAds();
+            PlayerPrefs.SetInt("AdsRemoved", 1); // Satın alım bilgisi kaydediliyor
+            PlayerPrefs.Save();
         }
         return PurchaseProcessingResult.Complete;
+    }   
+
+
+    public void OnInitializeFailed(InitializationFailureReason error, string message)
+    {
+        throw new NotImplementedException();
+    }
+    void CheckNonConsumable(string id){
+        if(m_StoreController!=null)
+        {
+            var product = m_StoreController.products.WithID(id);
+            if(product!=null)
+            {
+                GameManager.Instance.adsRemoved = true;
+            }else{
+                GameManager.Instance.adsRemoved = false;
+            }
+        }
+    }
+    private IEnumerator ShowMessage(String message, float delay)
+    {
+        messageText.text = message;
+        messageText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(delay);
+        messageText.gameObject.SetActive(false);
     }
 }
-

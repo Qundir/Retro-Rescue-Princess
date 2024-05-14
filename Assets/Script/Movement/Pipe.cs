@@ -8,20 +8,26 @@ public class Pipe : MonoBehaviour
     public Transform connection;
     public Vector3 enterDirection = Vector3.down;
     public Vector3 exitDirection = Vector3.zero;
+    public int exitTunnel = 1;
     private bool EnterTunnel = false;
 
-    private void OnTriggerStay2D(Collider2D other){
-        if(connection != null && other.CompareTag("Player")){
-            if(EnterTunnel){
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (connection != null && other.CompareTag("Player"))
+        {
+            if (EnterTunnel)
+            {
                 StartCoroutine(Enter(other.transform));
                 EnterTunnel = false;
             }
         }
     }
+
     public void EnterTunnelReturnTrue()
     {
         EnterTunnel = true;
     }
+
     public void EnterTunnelCanceller()
     {
         EnterTunnel = false;
@@ -32,15 +38,24 @@ public class Pipe : MonoBehaviour
         player.GetComponent<PlayerMovement>().enabled = false;
 
         Vector3 enteredPosition = transform.position + enterDirection;
-
         Vector3 enteredScale = Vector3.one * 0.5f;
-        yield return  Move(player, enteredPosition, enteredScale);
+        yield return Move(player, enteredPosition, enteredScale);
         yield return new WaitForSeconds(1f);
 
-        bool underground = connection.position.y < 0f;
-        Camera.main.GetComponent<SideScrolling>().SetUnderGround(underground);
+        if (exitTunnel == 1)
+        {
+            Camera.main.GetComponent<SideScrolling>().SetUnderGround(true);
+        }
+        else if (exitTunnel == 2)
+        {
+            Camera.main.GetComponent<SideScrolling>().SetUpperGround(true);
+        }
+        else if (exitTunnel == 0)
+        {
+            Camera.main.GetComponent<SideScrolling>().SetNormalGround(true);
+        }
 
-        if(exitDirection != Vector3.zero)
+        if (exitDirection != Vector3.zero)
         {
             player.position = connection.position - exitDirection;
             yield return Move(player, connection.position + exitDirection, Vector3.one);
@@ -49,9 +64,8 @@ public class Pipe : MonoBehaviour
         {
             player.position = connection.position;
             player.localScale = Vector3.one;
-            
-            
         }
+
         player.GetComponent<PlayerMovement>().enabled = true;
     }
 

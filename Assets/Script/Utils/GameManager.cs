@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public int coins {get; private set;}
     public int score {get; private set;}
     public string activeRendererType;
+    public bool adsRemoved = false;
     private Player player;
 
     private GameObject revivePanel;
@@ -56,15 +57,21 @@ public class GameManager : MonoBehaviour
     }
     public void FindRevivePanel()
     {
-        // RevivePanel adlı GameObject'i sahnede ara
-        revivePanel = GameObject.FindWithTag("RevivePanel");
-
-        // Eğer RevivePanel bulunamazsa hata mesajı yazdır
-        if (revivePanel == null)
+    if (SceneManager.GetActiveScene().buildIndex != 0)
         {
-            Debug.LogError("RevivePanel not found in the scene!");
+            // RevivePanel adlı GameObject'i sahnede ara
+            revivePanel = GameObject.FindWithTag("RevivePanel");
+
+            // Eğer RevivePanel bulunamazsa hata mesajı yazdır
+            if (revivePanel == null)
+            {
+                Debug.LogError("RevivePanel not found in the scene!");
+            }
+            else
+            {
+                revivePanel.SetActive(false);
+            }
         }
-        revivePanel.SetActive(false);
     }
     public void NewGame()
     {
@@ -158,5 +165,11 @@ public class GameManager : MonoBehaviour
     public void AddScore(int pointsToAdd)
     {
         score += pointsToAdd;
+    }
+
+    public void RemoveAds()
+    {
+        adsRemoved = true;
+        PlayerPrefs.SetInt("AdsRemoved", 1);
     }
 }

@@ -46,15 +46,20 @@ public class RevivePanel : MonoBehaviour
     }
     public void ShowRewardedAd()
     {
-
-
-    if (_rewardedAd != null && _rewardedAd.CanShowAd())
-    {
-        _rewardedAd.Show((Reward reward) =>
+        if (GameManager.Instance.adsRemoved)
         {
+            // Reklamlar kaldırıldıysa doğrudan ekstra can ekleyin
             AddLifeAdd();
-        });
-    }
+            return;
+        }
+
+        if (_rewardedAd != null && _rewardedAd.CanShowAd())
+        {
+            _rewardedAd.Show((Reward reward) =>
+            {
+                AddLifeAdd();
+            });
+        }
     }
 
     private void RegisterEventHandlers(RewardedAd ad)
