@@ -48,6 +48,11 @@ public class Koopa : MonoBehaviour
         else if(!shelled && other.gameObject.layer == LayerMask.NameToLayer("Shell"))
         {
             Hit();
+            
+        }else if(pushed && other.gameObject.CompareTag ("Koopa"))
+        {
+
+            other.GetComponent<Koopa>().Hit();
         }
     }
     private void EnterShell()
