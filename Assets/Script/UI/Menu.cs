@@ -11,7 +11,7 @@ public class Menu : MonoBehaviour
 
     public void StartTheGame()
     {
-        GameManager.Instance.StartLoaderGame(1,1);
+        GameManager.Instance.StartLoaderGame(1,3);
     }
 
     public void OpenSettingsPanel()
