@@ -1,6 +1,5 @@
 using UnityEngine;
 
-
 public class LerpKoopa : MonoBehaviour
 {
     public float initialDelay; // Başlangıç gecikme süresi
@@ -10,12 +9,13 @@ public class LerpKoopa : MonoBehaviour
     private float timer = 0f; // Zamanlayıcı
     private bool movingToEnd = true; // Hareket yönü kontrolü
     private Rigidbody2D rb;
+    private Vector2 direction; // Hareket yönü
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         enabled = false;
     }
-
 
     private void OnBecameVisible()
     {
@@ -23,9 +23,9 @@ public class LerpKoopa : MonoBehaviour
     }
     private void OnBecameInvisible()
     {
-        if(gameObject.layer == LayerMask.NameToLayer("Shell"))
+        if (gameObject.layer == LayerMask.NameToLayer("Shell"))
             return;
-        
+
         enabled = false;
     }
     private void OnEnable()
@@ -37,6 +37,7 @@ public class LerpKoopa : MonoBehaviour
         rb.velocity = Vector2.zero;
         rb.Sleep();
     }
+
     void Update()
     {
         // Başlangıç gecikme süresini kontrol et
@@ -52,6 +53,7 @@ public class LerpKoopa : MonoBehaviour
             if (movingToEnd)
             {
                 transform.position = Vector3.Lerp(startPos, endPos, t);
+                direction = (endPos - startPos).normalized;
                 if (t >= 1f)
                 {
                     // Bitiş pozisyonuna ulaşıldığında hareket yönünü değiştir
@@ -62,12 +64,23 @@ public class LerpKoopa : MonoBehaviour
             else
             {
                 transform.position = Vector3.Lerp(endPos, startPos, t);
+                direction = (startPos - endPos).normalized;
                 if (t >= 1f)
                 {
                     // Başlangıç pozisyonuna ulaşıldığında hareket yönünü değiştir
                     timer = 0f;
                     movingToEnd = true;
                 }
+            }
+
+            // Yönlendirme kontrolü
+            if (direction.x > 0f)
+            {
+                transform.localEulerAngles = new Vector3(0f, 180f, 0f);
+            }
+            else if (direction.x < 0f)
+            {
+                transform.localEulerAngles = Vector3.zero;
             }
         }
     }

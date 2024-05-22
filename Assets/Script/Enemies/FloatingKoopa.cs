@@ -8,6 +8,7 @@ public class FloatingKoopa : MonoBehaviour
     private bool pushed;
 
     public float shellSpeed = 12f;
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(!shelled && collision.gameObject.CompareTag("Player"))
@@ -60,9 +61,17 @@ public class FloatingKoopa : MonoBehaviour
         shelled = true;
         GetComponent<LerpKoopa>().enabled = false;
         GetComponent<AnimatedSprite>().enabled = false;
-        GetComponent<SpriteRenderer>().sprite = shellSprite;
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = shellSprite;
+
+        // shellSprite pozisyonunu ayarla
+        Vector3 position = spriteRenderer.transform.localPosition;
+        position.y -= 0.35f;
+        spriteRenderer.transform.localPosition = position;
+
         GameManager.Instance.AddScore(400);
     }
+
     private void PushShell(Vector2 direction)
     {
         pushed = true;
