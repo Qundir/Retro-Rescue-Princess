@@ -42,16 +42,16 @@ public class Player : MonoBehaviour
                 fireRenderer.enabled = false;
                 smallRenderer.enabled = false;
                 bigRenderer.enabled = true;
-                capsuleCollider.size = new Vector2 (1f, 2f);
-                capsuleCollider.offset = new Vector2 (0f, 0.5f);
+                capsuleCollider.size = new Vector2 (1f, 1.5f);
+                capsuleCollider.offset = new Vector2 (0f, 0.25f);
                 break;
             case "Fire":
                 activeRenderer = fireRenderer;
                 smallRenderer.enabled = false;
                 bigRenderer.enabled = false;
                 fireRenderer.enabled = true;
-                capsuleCollider.size = new Vector2 (1f, 2f);
-                capsuleCollider.offset = new Vector2 (0f, 0.5f);
+                capsuleCollider.size = new Vector2 (1f, 1.5f);
+                capsuleCollider.offset = new Vector2 (0f, 0.25f);
                 break;
         }
         GameManager.Instance.StoreRendererType(rendererType);  // Store the current type in GameManager
@@ -108,8 +108,8 @@ public class Player : MonoBehaviour
             bigRenderer.enabled = true;
             activeRenderer = bigRenderer;
             GameManager.Instance.AddScore(1000);
-            capsuleCollider.size = new Vector2 (1f, 2f);
-            capsuleCollider.offset = new Vector2 (0f, 0.5f);
+            capsuleCollider.size = new Vector2 (1f, 1.5f);
+            capsuleCollider.offset = new Vector2 (0f, 0f);
             StartCoroutine(ScaleAnimation());
             SetRenderer("Big");
         }

@@ -23,14 +23,25 @@ public class FlagPole : MonoBehaviour
     private IEnumerator LevelCompleteSequence(Transform player)
     {
         player.GetComponent<PlayerMovement>().enabled = false;
+        PlayerSpriteRenderer[] playerSpriteRenderers = player.GetComponentsInChildren<PlayerSpriteRenderer>();
+        foreach (PlayerSpriteRenderer playerSpriteRenderer in playerSpriteRenderers)
+        {
+            playerSpriteRenderer.EnableRunAnimation();
+        }
         yield return MoveTo(player, bottom.position);
         yield return MoveTo(player, player.position + Vector3.right);
         yield return MoveTo(player, player.position + Vector3.right + Vector3.down);
         yield return MoveTo(player, castle.position);
+        foreach (PlayerSpriteRenderer playerSpriteRenderer in playerSpriteRenderers)
+        {
+            playerSpriteRenderer.DisableForceRunAnimation();
+            
+        }
+        GameManager.Instance.LoadLevel(nextWorld, nextStage);
         player.gameObject.SetActive(false);
 
         yield return new WaitForSeconds(3f);
-        GameManager.Instance.LoadLevel(nextWorld, nextStage);
+
     }
 
     private IEnumerator MoveTo(Transform subject, Vector3 position)
