@@ -42,8 +42,8 @@ GameObject:
   - component: {fileID: 3941130923655808245}
   - component: {fileID: 6655623803831242888}
   - component: {fileID: 1322356500947165929}
-  - component: {fileID: 8195202655612485962}
   - component: {fileID: 8339277406361370922}
+  - component: {fileID: 3374994236196747457}
   m_Layer: 0
   m_Name: FireChamber
   m_TagString: Untagged
@@ -164,18 +164,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 3}
   m_EdgeRadius: 0
---- !u!114 &8195202655612485962
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5999996392658860830}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38177fbf065d6ae4989a2294f4e1bc95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8339277406361370922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,3 +178,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pivot: {fileID: 8861969014665675449}
   rotationSpeed: 105
+--- !u!114 &3374994236196747457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5999996392658860830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6d68b628a50d784588799301fc7f50a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
