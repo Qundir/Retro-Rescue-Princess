@@ -241,7 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aaf881e290ffab41ab71c527cbd67ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shellSprite: {fileID: 21300000, guid: 7a0cec3bc788b3749a503df03c6e91b3, type: 3}
+  shellSprite: {fileID: 21300000, guid: 4090014c2f8e95b4bb05aab486822297, type: 3}
   shellSpeed: 12
 --- !u!114 &988517830050567503
 MonoBehaviour:

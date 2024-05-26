@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
 {
-    public GameObject StartPanel, SettingsPanel; // settings and credit should get update 
+    public GameObject StartPanel, SettingsPanel,LevelSelector; // settings and credit should get update 
 
     public void StartTheGame()
     {
@@ -23,6 +23,30 @@ public class Menu : MonoBehaviour
     {
         SettingsPanel.SetActive(false);
         StartPanel.SetActive(true);
+    }
+    public void OpenLevelSelector()
+    {
+        LevelSelector.SetActive(true);
+        StartPanel.SetActive(false);
+    }
+    public void CloseLevelSelector()
+    {
+        LevelSelector.SetActive(false);
+        StartPanel.SetActive(true);
+    }
+    public void StartLevel1()
+    {
+        GameManager.Instance.StartLoaderGame(1,1);
+    }
+    public void StartLevel2(){
+        GameManager.Instance.StartLoaderGame(1,2);
+    }
+    public void StartLevel3(){
+        GameManager.Instance.StartLoaderGame(1,3);
+    }
+    public void StartLevel4()
+    {
+        GameManager.Instance.StartLoaderGame(1,4);
     }
 
 }
