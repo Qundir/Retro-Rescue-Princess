@@ -9,6 +9,8 @@ TagManager:
   - Ground
   - Koopa
   - Goomba
+  - Fireball
+  - KoopaBoss
   layers:
   - Default
   - TransparentFX
@@ -20,7 +22,7 @@ TagManager:
   - Enemies
   - Shell
   - Fireball
-  - 
+  - EnemyFire
   - 
   - 
   - 

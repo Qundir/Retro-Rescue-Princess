@@ -985,7 +985,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8390922703387766561, guid: 4de21def0e65956419d44628812ffde6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.5
+      value: 6.5
       objectReference: {fileID: 0}
     - target: {fileID: 8390922703387766561, guid: 4de21def0e65956419d44628812ffde6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1049,7 +1049,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &247099734
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1677,7 +1677,7 @@ PrefabInstance:
     - target: {fileID: 1715789356855501896, guid: 77d42ea55221bce4b999bfc3446b19d7, type: 3}
       propertyPath: item
       value: 
-      objectReference: {fileID: 9020304397785583030, guid: 43bc377e009da1e4ebfabdcada6c11a8, type: 3}
+      objectReference: {fileID: 6883087785731582391, guid: bcd6c3dea851e5e448e7e088bec7cf94, type: 3}
     - target: {fileID: 5424667726986677409, guid: 77d42ea55221bce4b999bfc3446b19d7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 103.5
@@ -1972,9 +1972,12 @@ GameObject:
   - component: {fileID: 606449014}
   - component: {fileID: 606449013}
   - component: {fileID: 606449016}
+  - component: {fileID: 606449017}
+  - component: {fileID: 606449018}
+  - component: {fileID: 606449019}
   m_Layer: 0
   m_Name: KoopaBoss
-  m_TagString: Untagged
+  m_TagString: KoopaBoss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2056,7 +2059,7 @@ Transform:
   m_GameObject: {fileID: 606449012}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 133.26, y: 4.46, z: -0.14041173}
+  m_LocalPosition: {x: 133.26, y: 4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2079,6 +2082,92 @@ MonoBehaviour:
   BossFireBall: {fileID: 8196121700668252815, guid: 3d2140185bd6b2c4e9b59a381e745c91, type: 3}
   BossFireBallPosition1: {fileID: 1520342365}
   BossFireBallPosition2: {fileID: 550653819}
+--- !u!50 &606449017
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 606449012}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 2
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!61 &606449018
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 606449012}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2, y: 2}
+    newSize: {x: 0.32, y: 0.32}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2}
+  m_EdgeRadius: 0
+--- !u!114 &606449019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 606449012}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea86bc3bc9bfa4d42b3c1caeccf962a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 606449014}
+  deadSprite: {fileID: 21300000, guid: 42bad3ed0da3d2649a2bd3382aa9eaba, type: 3}
 --- !u!1001 &619631401
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2856,7 +2945,7 @@ Transform:
   m_GameObject: {fileID: 752197422}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 133.67, y: 6, z: -10}
+  m_LocalPosition: {x: 100, y: 6, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4151,7 +4240,7 @@ PrefabInstance:
     - target: {fileID: 1715789356855501896, guid: 77d42ea55221bce4b999bfc3446b19d7, type: 3}
       propertyPath: item
       value: 
-      objectReference: {fileID: 9020304397785583030, guid: 43bc377e009da1e4ebfabdcada6c11a8, type: 3}
+      objectReference: {fileID: 6883087785731582391, guid: bcd6c3dea851e5e448e7e088bec7cf94, type: 3}
     - target: {fileID: 5424667726986677409, guid: 77d42ea55221bce4b999bfc3446b19d7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 100.5
@@ -4646,8 +4735,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialDelay: 0
   moveTime: 4
-  startPos: {x: 134.5, y: 7.5, z: 0}
-  endPos: {x: 125, y: 7.5, z: 0}
+  startPos: {x: 134.5, y: 6.5, z: 0}
+  endPos: {x: 125, y: 6.5, z: 0}
 --- !u!1001 &1278457631
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6059,11 +6148,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4194125452567057932, guid: 7c079f0bea467c24093e45908f6fa33a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4194125452567057932, guid: 7c079f0bea467c24093e45908f6fa33a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.5
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4194125452567057932, guid: 7c079f0bea467c24093e45908f6fa33a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7939,7 +8028,7 @@ GameObject:
   - component: {fileID: 2049626144}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: KoopaBoss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

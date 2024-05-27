@@ -14,8 +14,8 @@ public class DeathAnimation : MonoBehaviour
 
     private void OnEnable()
     {
-        UpdateSprite();
         DisablePhysics();
+        UpdateSprite();
         StartCoroutine(Animate());
     }
 
@@ -37,6 +37,7 @@ public class DeathAnimation : MonoBehaviour
         GetComponent<Rigidbody2D>().isKinematic = true;
         PlayerMovement playerMovement = GetComponent<PlayerMovement>();
         EntityMovement entityMovement = GetComponent<EntityMovement>();
+        BossKoopa bossKoopa = GetComponent<BossKoopa>();
         if (playerMovement != null)
         {
             playerMovement.enabled = false;
@@ -44,6 +45,9 @@ public class DeathAnimation : MonoBehaviour
         if(entityMovement != null)
         {
             entityMovement.enabled = false;
+        }
+        if(bossKoopa != null){
+            bossKoopa.enabled = false;
         }
     }
     private IEnumerator Animate()

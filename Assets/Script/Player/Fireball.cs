@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Purchasing;
 
 public class Fireball : MonoBehaviour
 {
@@ -30,10 +31,20 @@ public class Fireball : MonoBehaviour
             Goomba goomba = collision.gameObject.GetComponent<Goomba>();
             goomba.Hit();
             Destroy(gameObject);
+        }else if (collision.gameObject.CompareTag("KoopaBoss"))
+        {
+            BossKoopa bossKoopa = collision.gameObject.GetComponent<BossKoopa>();
+            bossKoopa.Hit();
+            Destroy(gameObject);
         }
         else
         {
             Destroy(gameObject);
         }
+    }
+    public void DestroyFireball()
+    {
+        Destroy(gameObject);
+        Debug.Log("DestroyFireball worked");
     }
 }

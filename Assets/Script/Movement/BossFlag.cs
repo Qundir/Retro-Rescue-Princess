@@ -35,7 +35,7 @@ public class BossFlag : MonoBehaviour
                 canvasGroup = panel.AddComponent<CanvasGroup>();
             }
 
-            float duration = 0.25f; // Opacity'nin düşme süresi
+            float duration = 0.1f; // Opacity'nin düşme süresi
             float elapsedTime = 0f;
 
             while (elapsedTime < duration)
@@ -49,7 +49,7 @@ public class BossFlag : MonoBehaviour
             panel.SetActive(false); // Paneli devre dışı bırak
 
             // Bir sonraki panele geçmeden önce 0.25 saniye bekle
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(0.1f);
 
         }
 
