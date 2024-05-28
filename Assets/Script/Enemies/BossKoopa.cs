@@ -52,7 +52,7 @@ public class BossKoopa : MonoBehaviour
     public void Hit()
     {
         hitCounter++;
-        if(hitCounter >9)
+        if(hitCounter > 10)
         {
             KillBoss();
         }        
