@@ -973,7 +973,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8390922703387766561, guid: 4de21def0e65956419d44628812ffde6, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8390922703387766561, guid: 4de21def0e65956419d44628812ffde6, type: 3}
       propertyPath: m_LocalScale.y
@@ -1677,7 +1677,7 @@ PrefabInstance:
     - target: {fileID: 1715789356855501896, guid: 77d42ea55221bce4b999bfc3446b19d7, type: 3}
       propertyPath: item
       value: 
-      objectReference: {fileID: 6883087785731582391, guid: bcd6c3dea851e5e448e7e088bec7cf94, type: 3}
+      objectReference: {fileID: 9020304397785583030, guid: 43bc377e009da1e4ebfabdcada6c11a8, type: 3}
     - target: {fileID: 5424667726986677409, guid: 77d42ea55221bce4b999bfc3446b19d7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 103.5
@@ -1975,7 +1975,7 @@ GameObject:
   - component: {fileID: 606449017}
   - component: {fileID: 606449018}
   - component: {fileID: 606449019}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: KoopaBoss
   m_TagString: KoopaBoss
   m_Icon: {fileID: 0}
@@ -2096,8 +2096,8 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_AngularDrag: 0
+  m_GravityScale: 35
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -2105,9 +2105,9 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 2
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!61 &606449018
 BoxCollider2D:
@@ -2945,7 +2945,7 @@ Transform:
   m_GameObject: {fileID: 752197422}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 100, y: 6, z: -10}
+  m_LocalPosition: {x: 0, y: 6, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4240,7 +4240,7 @@ PrefabInstance:
     - target: {fileID: 1715789356855501896, guid: 77d42ea55221bce4b999bfc3446b19d7, type: 3}
       propertyPath: item
       value: 
-      objectReference: {fileID: 6883087785731582391, guid: bcd6c3dea851e5e448e7e088bec7cf94, type: 3}
+      objectReference: {fileID: 9020304397785583030, guid: 43bc377e009da1e4ebfabdcada6c11a8, type: 3}
     - target: {fileID: 5424667726986677409, guid: 77d42ea55221bce4b999bfc3446b19d7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 100.5
@@ -6148,11 +6148,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4194125452567057932, guid: 7c079f0bea467c24093e45908f6fa33a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 100
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 4194125452567057932, guid: 7c079f0bea467c24093e45908f6fa33a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 4194125452567057932, guid: 7c079f0bea467c24093e45908f6fa33a, type: 3}
       propertyPath: m_LocalPosition.z

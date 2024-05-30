@@ -46,7 +46,7 @@ public class RevivePanel : MonoBehaviour
     }
     public void ShowRewardedAd()
     {
-        if (GameManager.Instance.adsRemoved)
+        if (GameManager.Instance.AdsRemoved == true)
         {
             // Reklamlar kaldırıldıysa doğrudan ekstra can ekleyin
             AddLifeAdd();
@@ -61,6 +61,7 @@ public class RevivePanel : MonoBehaviour
             });
         }
     }
+
 
     private void RegisterEventHandlers(RewardedAd ad)
     {

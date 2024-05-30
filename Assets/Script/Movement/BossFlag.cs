@@ -8,6 +8,7 @@ public class BossFlag : MonoBehaviour
     public Transform BlockEdge, BlockStarter, Princess;
     public int nextWorld = 1;
     public int nextStage = 1;
+    private GameObject Boss;
 
     public void OnTriggerEnter2D(Collider2D other)
     {
@@ -18,12 +19,29 @@ public class BossFlag : MonoBehaviour
     }
 
     private IEnumerator HandleLevelCompletionSequence(Transform player)
+{
+    player.GetComponent<PlayerMovement>().enabled = false;
+    Boss = GameObject.FindWithTag("KoopaBoss");
+
+    if (Boss != null)
     {
-        player.GetComponent<PlayerMovement>().enabled = false;
-        yield return StartCoroutine(FadeOutPanels());
-        yield return StartCoroutine(MoveTo(player, BlockStarter.position));
-        yield return StartCoroutine(LevelCompleteSequence(player));
+        Debug.Log("Boss bulundu, KillBoss çağrılıyor.");
+        BossKoopa bossKoopa = Boss.GetComponent<BossKoopa>();
+        if (bossKoopa != null)
+        {
+            bossKoopa.KillBoss();
+        }
     }
+    else
+    {
+        Debug.Log("Boss bulunamadı.");
+    }
+
+    yield return StartCoroutine(FadeOutPanels());
+    yield return StartCoroutine(MoveTo(player, BlockStarter.position));
+    yield return StartCoroutine(LevelCompleteSequence(player));
+}
+
 
     private IEnumerator FadeOutPanels()
     {

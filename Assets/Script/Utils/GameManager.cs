@@ -10,7 +10,8 @@ public class GameManager : MonoBehaviour
     public int coins { get; private set; }
     public int score { get; private set; }
     public string activeRendererType;
-    public bool adsRemoved = false;
+
+    public bool AdsRemoved = false;
     private Player player;
     private GameObject revivePanel;
 
@@ -181,11 +182,5 @@ public class GameManager : MonoBehaviour
     public void AddScore(int pointsToAdd)
     {
         score += pointsToAdd;
-    }
-
-    public void RemoveAds()
-    {
-        adsRemoved = true;
-        PlayerPrefs.SetInt("AdsRemoved", 1);
     }
 }

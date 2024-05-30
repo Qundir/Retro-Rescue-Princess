@@ -52,6 +52,7 @@ public class BossKoopa : MonoBehaviour
     public void Hit()
     {
         hitCounter++;
+        Debug.Log("HitCounter");
         if(hitCounter > 10)
         {
             KillBoss();
@@ -59,8 +60,21 @@ public class BossKoopa : MonoBehaviour
     }
     public void KillBoss()
     {
+        gameObject.tag = "Untagged";
         GetComponent<AnimatedSprite>().enabled = false;
         GetComponent<DeathAnimation>().enabled = true;
         GetComponent<BossKoopa>().enabled = false;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Player player = collision.gameObject.GetComponent<Player>();
+            if (player != null)
+            {
+                player.Hit();
+            }
+        }
     }
 }
