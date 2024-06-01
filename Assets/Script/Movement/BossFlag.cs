@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BossFlag : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class BossFlag : MonoBehaviour
     public int nextWorld = 1;
     public int nextStage = 1;
     private GameObject Boss;
+    public GameObject Endtext;
 
     public void OnTriggerEnter2D(Collider2D other)
     {
@@ -111,18 +113,19 @@ public class BossFlag : MonoBehaviour
 
         // En sonunda Prenses'e hareket
         yield return MoveTo(player, Princess.position);
-
-
-        player.gameObject.SetActive(false);
-
-
-        yield return new WaitForSeconds(3f);
-        GameManager.Instance.LoadLevel(nextWorld, nextStage);
+        Endtext.SetActive(true);
 
         foreach (PlayerSpriteRenderer playerSpriteRenderer in playerSpriteRenderers)
         {
             playerSpriteRenderer.DisableForceRunAnimation();
 
         }
+
+        yield return new WaitForSeconds(7f);
+        player.gameObject.SetActive(false);
+
+        GameManager.Instance.LoadLevel(nextWorld, nextStage);
+
+
     }
 }

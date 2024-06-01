@@ -25,7 +25,13 @@ public class Fireball : MonoBehaviour
         }else if(collision.gameObject.CompareTag("Koopa"))
         {
             Koopa koopa = collision.gameObject.GetComponent<Koopa>();
+            FloatingKoopa floatingKoopa = collision.gameObject.GetComponent<FloatingKoopa>();
+            if(koopa != null)
+            {
             koopa.Hit();
+            }else if (floatingKoopa != null){
+                floatingKoopa.Hit();
+            }
             Destroy(gameObject);
         }else if (collision.gameObject.CompareTag("Goomba")){
             Goomba goomba = collision.gameObject.GetComponent<Goomba>();
