@@ -34,19 +34,23 @@ public class Menu : MonoBehaviour
         LevelSelector.SetActive(false);
         StartPanel.SetActive(true);
     }
-    public void StartLevel1()
+    public void StartLevel1_1()
     {
         GameManager.Instance.StartLoaderGame(1,1);
     }
-    public void StartLevel2(){
+    public void StartLevel1_2(){
         GameManager.Instance.StartLoaderGame(1,2);
     }
-    public void StartLevel3(){
+    public void StartLevel1_3(){
         GameManager.Instance.StartLoaderGame(1,3);
     }
-    public void StartLevel4()
+    public void StartLevel1_4()
     {
         GameManager.Instance.StartLoaderGame(1,4);
+    }
+    public void StartLevel2_1()
+    {
+        GameManager.Instance.StartLoaderGame(2,1);
     }
 
 }

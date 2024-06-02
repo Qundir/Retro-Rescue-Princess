@@ -80,11 +80,15 @@ public class FloatingKoopa : MonoBehaviour
         movement.enabled = true;
         movement.direction = direction.normalized;
         movement.speed = shellSpeed;
-        movement.enabled = true;
         gameObject.layer = LayerMask.NameToLayer("Shell");
     }
     public void Hit()
     {
+        LerpKoopa lerpKoopa = GetComponent<LerpKoopa>();
+        if(lerpKoopa != null)
+        {
+            lerpKoopa.enabled = false;
+        }
         GetComponent<AnimatedSprite>().enabled = false;
         GetComponent<DeathAnimation>().enabled = true;
         Destroy(gameObject, 3f);

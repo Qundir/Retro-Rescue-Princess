@@ -14225,12 +14225,24 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mario
       objectReference: {fileID: 0}
+    - target: {fileID: 1577296867503950379, guid: 7c079f0bea467c24093e45908f6fa33a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2096426109010864864, guid: 7c079f0bea467c24093e45908f6fa33a, type: 3}
       propertyPath: fireBall
       value: 
       objectReference: {fileID: 2928153484549883234, guid: 0f3b4124b45266b4ca1e6770004bbdba, type: 3}
+    - target: {fileID: 2203249135180502059, guid: 7c079f0bea467c24093e45908f6fa33a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2642112394643560150, guid: 7c079f0bea467c24093e45908f6fa33a, type: 3}
       propertyPath: m_Direction
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3116492673040630107, guid: 7c079f0bea467c24093e45908f6fa33a, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3116492673040630107, guid: 7c079f0bea467c24093e45908f6fa33a, type: 3}
