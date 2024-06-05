@@ -24,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
     public bool running => Mathf.Abs(velocity.x) > 0.25f || Mathf.Abs(inputAxis) > 0.25f;
     public bool sliding => (inputAxis > 0f && velocity.x < 0f) || (inputAxis < 0f && velocity.x > 0f);
     PlayerInput playerInput;
+
+    // TODO make movement more stabilize for jumping and horizontal movement while raycast with any object
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();

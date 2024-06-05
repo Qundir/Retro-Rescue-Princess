@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        activeRendererType = "Fire";
+        activeRendererType = "Small";
         if (Instance != null)
         {
             DestroyImmediate(gameObject);
