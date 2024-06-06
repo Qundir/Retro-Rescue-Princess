@@ -97,20 +97,28 @@ public class PlayerMovement : MonoBehaviour
         
     }
     private void HorizontalMovement()
+{
+    // Accelerate / decelerate
+    inputAxis = playerInput.Movement.HorizontalAndTunnel.ReadValue<Vector2>().x;
+    velocity.x = Mathf.MoveTowards(velocity.x, inputAxis * moveSpeed, moveSpeed * Time.deltaTime);
+
+    // Raycast kontrolü, çarpmayı engeller ve hızını sıfırlar (zıplama sırasında değil)
+    if (grounded && rb.Raycast(Vector2.right * velocity.x))
     {
-        // accelerate / decelerate
-        inputAxis = playerInput.Movement.HorizontalAndTunnel.ReadValue<Vector2>().x;
-        velocity.x = Mathf.MoveTowards(velocity.x, inputAxis * moveSpeed, moveSpeed * Time.deltaTime);
-        if(rb.Raycast(Vector2.right * velocity.x)){
-            velocity.x = 0f;
-        }
-        if(velocity.x > 0f)
-        {
-            transform.eulerAngles = Vector3.zero;
-        } else if (velocity.x < 0f){
-            transform.eulerAngles = new Vector3(0f, 180f, 0f);
-        }
+        velocity.x = 0f;
     }
+
+    // Yön belirleme
+    if (velocity.x > 0f)
+    {
+        transform.eulerAngles = Vector3.zero;
+    }
+    else if (velocity.x < 0f)
+    {
+        transform.eulerAngles = new Vector3(0f, 180f, 0f);
+    }
+}
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.layer == LayerMask.NameToLayer("Enemies"))

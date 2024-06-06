@@ -113,13 +113,14 @@ public class BossFlag : MonoBehaviour
 
         // En sonunda Prenses'e hareket
         yield return MoveTo(player, Princess.position);
-        Endtext.SetActive(true);
-
         foreach (PlayerSpriteRenderer playerSpriteRenderer in playerSpriteRenderers)
         {
             playerSpriteRenderer.DisableForceRunAnimation();
 
         }
+        Endtext.SetActive(true);
+
+
 
         yield return new WaitForSeconds(7f);
         player.gameObject.SetActive(false);

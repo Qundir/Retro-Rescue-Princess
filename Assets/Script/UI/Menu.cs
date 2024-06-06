@@ -56,5 +56,9 @@ public class Menu : MonoBehaviour
     {
         GameManager.Instance.StartLoaderGame(2,2);
     }
+    public void StartLevel2_3()
+    {
+        GameManager.Instance.StartLoaderGame(2,3);
+    }
 
 }
