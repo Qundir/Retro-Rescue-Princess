@@ -6297,7 +6297,11 @@ PrefabInstance:
       objectReference: {fileID: 1806031665}
     - target: {fileID: 4542758543974685798, guid: 9f0ace7c0499d3a46a3f3a54a83f95f6, type: 3}
       propertyPath: nextStage
-      value: 0
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4542758543974685798, guid: 9f0ace7c0499d3a46a3f3a54a83f95f6, type: 3}
+      propertyPath: nextWorld
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

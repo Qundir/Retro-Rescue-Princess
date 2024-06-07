@@ -9,6 +9,7 @@ public class BossFlag : MonoBehaviour
     public Transform BlockEdge, BlockStarter, Princess;
     public int nextWorld = 1;
     public int nextStage = 1;
+    public int DownStairCase;
     private GameObject Boss;
     public GameObject Endtext;
 
@@ -107,7 +108,7 @@ public class BossFlag : MonoBehaviour
 
 
         // Ardından 3 birim aşağıya hareket
-        targetPosition = player.position + Vector3.down * 3;
+        targetPosition = player.position + Vector3.down * DownStairCase;
         yield return MoveTo(player, targetPosition);
 
 

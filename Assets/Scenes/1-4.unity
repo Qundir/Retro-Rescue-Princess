@@ -3424,6 +3424,7 @@ MonoBehaviour:
   Princess: {fileID: 37279431}
   nextWorld: 2
   nextStage: 1
+  DownStairCase: 3
   Endtext: {fileID: 506448196}
 --- !u!1 &942705504
 GameObject:
