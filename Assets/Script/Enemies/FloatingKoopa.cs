@@ -53,7 +53,19 @@ public class FloatingKoopa : MonoBehaviour
         }else if(pushed && other.gameObject.CompareTag ("Koopa"))
         {
 
-            other.GetComponent<FloatingKoopa>().Hit();
+            Koopa koopa = other.GetComponent<Koopa>();
+            FloatingKoopa floatingKoopa = other.GetComponent<FloatingKoopa>();
+            JumperKoopa jumperKoopa = other.GetComponent<JumperKoopa>();
+            if(koopa != null)
+            {
+                koopa.Hit();
+            }else if(floatingKoopa != null)
+            {
+                floatingKoopa.Hit();
+            }else if(jumperKoopa != null)
+            {
+                jumperKoopa.Hit();
+            }
         }
     }
     private void EnterShell()

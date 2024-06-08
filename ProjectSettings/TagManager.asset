@@ -11,6 +11,10 @@ TagManager:
   - Goomba
   - Fireball
   - KoopaBoss
+  - HardBlock
+  - Brick
+  - Tunnel
+  - MysteryBlock
   layers:
   - Default
   - TransparentFX

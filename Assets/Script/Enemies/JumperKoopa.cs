@@ -1,12 +1,12 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Koopa : MonoBehaviour
+public class JumperKoopa : MonoBehaviour
 {
     public Sprite shellSprite;
-    private bool shelled;
-    private bool pushed;
-
+    public bool shelled;
+    public bool pushed;
+    public bool Jumper = true;
     public float shellSpeed = 12f;
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -69,24 +69,37 @@ public class Koopa : MonoBehaviour
     }
     private void EnterShell()
     {
+        Jumper = false;
         shelled = true;
-        GetComponent<EntityMovement>().enabled = false;
+        GetComponent<JumpKoopa>().enabled = false;
         GetComponent<AnimatedSprite>().enabled = false;
-        GetComponent<SpriteRenderer>().sprite = shellSprite;
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = shellSprite;
+
+        // shellSprite pozisyonunu ayarla
+        Vector3 position = spriteRenderer.transform.localPosition;
+        position.y -= 0.35f;
+        spriteRenderer.transform.localPosition = position;
+
         GameManager.Instance.AddScore(400);
     }
     private void PushShell(Vector2 direction)
     {
         pushed = true;
         GetComponent<Rigidbody2D>().isKinematic = false;
-        EntityMovement movement = GetComponent<EntityMovement>();
+        JumpKoopa movement = GetComponent<JumpKoopa>();
+        movement.enabled = true;
         movement.direction = direction.normalized;
         movement.speed = shellSpeed;
-        movement.enabled = true;
         gameObject.layer = LayerMask.NameToLayer("Shell");
     }
     public void Hit()
     {
+        JumpKoopa jumpKoopa = GetComponent<JumpKoopa>();
+        if(jumpKoopa != null)
+        {
+            jumpKoopa.enabled = false;
+        }
         GetComponent<AnimatedSprite>().enabled = false;
         GetComponent<DeathAnimation>().enabled = true;
         Destroy(gameObject, 3f);
