@@ -52,16 +52,16 @@ public class FollowPlayerPosition : MonoBehaviour
         while (true)
         {
             // Rastgele bir sayı seç (1 ile 4 arasında)
-            int birdieCount = Random.Range(1, 5);
+            int birdieCount = Random.Range(1, 4);
 
             // Rastgele sayıda Birdie çağır
             for (int i = 0; i < birdieCount; i++)
             {
                 InstantiateBirdie();
-                yield return new WaitForSeconds(0.5f); // 0.5 saniye bekle
+                yield return new WaitForSeconds(0.75f); // 0.5 saniye bekle
             }
 
-            yield return new WaitForSeconds(0.75f); // 0.75 saniye bekle
+            yield return new WaitForSeconds(1f); // 0.75 saniye bekle
 
             // Aynı işlemi tekrarla
         }

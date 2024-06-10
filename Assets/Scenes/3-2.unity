@@ -5423,6 +5423,14 @@ PrefabInstance:
       propertyPath: castle
       value: 
       objectReference: {fileID: 1003601420}
+    - target: {fileID: 4542758543974685798, guid: 9f0ace7c0499d3a46a3f3a54a83f95f6, type: 3}
+      propertyPath: nextStage
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4542758543974685798, guid: 9f0ace7c0499d3a46a3f3a54a83f95f6, type: 3}
+      propertyPath: nextWorld
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

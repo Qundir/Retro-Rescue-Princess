@@ -96,7 +96,10 @@ public class GameManager : MonoBehaviour
         // for the start the game on menu
         this.world = world;
         this.stage = stage;
-
+        lives = 3;
+        coins = 0;
+        score = 0;
+        activeRendererType = "Small"; // change it if you implement start up system to the game
         SceneManager.LoadScene($"{world}-{stage}");
         Invoke("FindRevivePanel", 0.02f);
     }

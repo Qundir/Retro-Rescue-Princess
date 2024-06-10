@@ -586,9 +586,9 @@ MonoBehaviour:
   BlockEdge: {fileID: 1739013689}
   BlockStarter: {fileID: 1504174558}
   Princess: {fileID: 1117174418}
-  nextWorld: 1
-  nextStage: 3
-  DownStairCase: 1
+  nextWorld: 3
+  nextStage: 1
+  DownStairCase: 4
   Endtext: {fileID: 2035725625}
 --- !u!61 &88426742
 BoxCollider2D:
