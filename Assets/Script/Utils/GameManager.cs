@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public int coins { get; private set; }
     public int score { get; private set; }
     public string activeRendererType;
+    public int hiScore;
 
     public bool AdsRemoved = false;
     private Player player;
@@ -186,5 +187,10 @@ public class GameManager : MonoBehaviour
     public void AddScore(int pointsToAdd)
     {
         score += pointsToAdd;
+        if(score > hiScore)
+        {
+            PlayerPrefs.SetInt("hiScore", hiScore);
+            hiScore = score;
+        }
     }
 }

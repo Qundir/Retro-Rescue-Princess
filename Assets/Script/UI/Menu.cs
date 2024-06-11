@@ -8,10 +8,20 @@ using UnityEngine.UI;
 public class Menu : MonoBehaviour
 {
     public GameObject StartPanel, SettingsPanel,LevelSelector; // settings and credit should get update 
-
+    public Text HiScoreText;
+    private int hiscoreholder;
     public void StartTheGame()
     {
         GameManager.Instance.StartLoaderGame(1,1);
+    }
+    public void Start()
+    {
+        UpdateHiScore();
+    }
+    private void UpdateHiScore()
+    { 
+        hiscoreholder = PlayerPrefs.GetInt("hiScore", 0);
+        HiScoreText.text ="HI-SCORE : "+ hiscoreholder;
     }
 
     public void OpenSettingsPanel()
