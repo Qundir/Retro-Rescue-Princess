@@ -15,6 +15,7 @@ TagManager:
   - Brick
   - Tunnel
   - MysteryBlock
+  - Princesss
   layers:
   - Default
   - TransparentFX

@@ -3,7 +3,20 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.unity3d.player"
     xmlns:tools="http://schemas.android.com/tools">
+    
+    <!-- Gerekli İzinler -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    
     <application>
+        <!-- Google Mobile Ads için meta veri -->
+        <meta-data
+            android:name="com.google.android.gms.games.APP_ID"
+            android:value="@string/game_services_project_id"/>
+        
+        <!-- Unity Ana Aktivitesi -->
         <activity android:name="com.unity3d.player.UnityPlayerActivity"
                   android:theme="@style/UnityThemeSelector">
             <intent-filter>
@@ -12,5 +25,11 @@
             </intent-filter>
             <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
         </activity>
+        
+        <!-- Google Play Games Aktivitesi -->
+        <activity android:name="com.google.games.bridge.NativeBridgeActivity"/>
+
+        <!-- Google Mobile Ads Aktivitesi -->
+        <activity android:name="com.google.android.gms.ads.AdActivity"/>
     </application>
 </manifest>

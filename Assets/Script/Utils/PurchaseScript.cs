@@ -22,7 +22,8 @@ public class PurchaseScript : MonoBehaviour, IStoreListener
     public void NonConsumable_Btn_Pressed()
     {
         //RemoveAds();
-        m_Storecontroller.InitiatePurchase(ncItem.ID);
+        //m_Storecontroller.InitiatePurchase(ncItem.ID);
+        
     }
     //procesing purchase
     public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs purchaseEvent)

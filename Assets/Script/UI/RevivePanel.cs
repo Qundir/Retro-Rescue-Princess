@@ -11,11 +11,13 @@ public class RevivePanel : MonoBehaviour
         // Initialize the Google Mobile Ads SDK.
         MobileAds.Initialize(initStatus => { });
         LoadRewardedAd();
+        GameManager.Instance.AdsRemoved = true;
     }
     public void RestartGame()
     {
         GameManager.Instance.LoadLevel(1,0);
         GameManager.Instance.NewGame();
+        GameManager.Instance.ScoreShouldPostLeaderboard();
     }
     public void AddLifeAdd()
     {

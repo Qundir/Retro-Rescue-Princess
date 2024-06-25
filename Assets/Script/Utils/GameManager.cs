@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -15,6 +17,7 @@ public class GameManager : MonoBehaviour
     public bool AdsRemoved = false;
     private Player player;
     private GameObject revivePanel;
+    private bool ScoreShouldPost = false;
 
     private void Awake()
     {
@@ -191,6 +194,28 @@ public class GameManager : MonoBehaviour
         {
             PlayerPrefs.SetInt("hiScore", hiScore);
             hiScore = score;
+            PlayerPrefs.Save();
+            ScoreShouldPost = true;
+        }
+    }
+    public void ScoreShouldPostLeaderboard()
+    {
+
+        if(ScoreShouldPost)
+        {
+            Social.ReportScore(hiScore, GPGSIds.leaderboard_score,
+            (bool success) => 
+            {
+                if(success)
+                {
+                    ScoreShouldPost = false;
+                    Debug.Log("score posted");
+                }
+                else
+                {
+                    Debug.Log("Score not posted");
+                }
+            });
         }
     }
 }

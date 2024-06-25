@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.SocialPlatforms;
 
 public class Menu : MonoBehaviour
 {
@@ -22,7 +23,10 @@ public class Menu : MonoBehaviour
     { 
         hiscoreholder = PlayerPrefs.GetInt("hiScore", 0);
         HiScoreText.text ="HI-SCORE : "+ hiscoreholder;
+        PlayerPrefs.Save();
     }
+
+
 
     public void OpenSettingsPanel()
     {
@@ -85,5 +89,9 @@ public class Menu : MonoBehaviour
     public void StartLevel3_3()
     {
         GameManager.Instance.StartLoaderGame(3,3);
-    }    
+    }
+    public void StartLevel3_4()
+    {
+        GameManager.Instance.StartLoaderGame(3,4);
+    }
 }
